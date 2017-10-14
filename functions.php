@@ -20,21 +20,14 @@ if ( ! function_exists( 'vi_starter_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'vi_starter_setup' );
 
-/**
- * Remove EMOJI code from the head
- */
-
+// Remove EMOJI code from the head
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-/**
- * Loads augmented script loader (for CDN w. Local Fallback)
- */
+// Loads augmented script loader (for CDN w. Local Fallback)
 require get_template_directory() . '/inc/script_cdn_fallback.php';
 
-/**
- * Enqueue scripts and styles.
- */
+// Enqueue scripts and styles.
 function vi_starter_scripts() {
 	wp_enqueue_style( 'vi_starter-style', get_template_directory_uri() . '/css/style.css' );
 

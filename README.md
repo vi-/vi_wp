@@ -1,6 +1,10 @@
 # vi_starter
 ### A starter WP Theme with Gulp
 
+*Introduction*
+
+This is a starter WordPress theme, it's based on a very stripped-down **_s** theme and adds a convenient development & build process using Gulp task runner. To make this your own, please refer to the  [_s Getting Started](https://github.com/automattic/_s#getting-started) section and use `vi_starter` instead of `_s` when performing find & replace.
+
 *Instructions*
 
 1. Clone the repository into you `wp-content/themes` directory

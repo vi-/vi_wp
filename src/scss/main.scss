@@ -1,0 +1,22 @@
+/* --------------------------------------------------
+1.0 SASS Imports
+    - reset
+    - dependencies (comes with default _s theme styles)
+    - dev utils
+    - variables
+    - mixins
+    - partials
+-------------------------------------------------- */
+
+@import "libs/reset";
+@import "libs/underscores";
+@import "variables/variables";
+@import "mixins/mixins";
+
+*, *:after, *:before {
+  @include box-sizing(border-box);
+}
+
+body {
+	background-color: #fff;
+}

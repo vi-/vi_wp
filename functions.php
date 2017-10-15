@@ -48,7 +48,7 @@ function vi_starter_scripts() {
 	);
 
 	// Combined JS file
-	wp_enqueue_script( 'main_script', get_template_directory_uri() . '/js/script.min.js', array(), '', true );
+	wp_enqueue_script( 'main_script', get_template_directory_uri() . '/js/script.js', array(), '', true );
 
 	// Threaded comments Ajaxified reply
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

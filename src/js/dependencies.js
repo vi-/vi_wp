@@ -1,1 +1,1 @@
-console.log('Dependencise.js is loaded all VERY GOOD son...');
+console.log('Dependencise.js is loaded');

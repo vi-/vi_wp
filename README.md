@@ -18,6 +18,7 @@
 - gulp-rename
 - gulp-sass
 - gulp-sourcemaps
+- gulp-cssnano
 - gulp-babel
 - del
 - browser-sync

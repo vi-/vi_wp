@@ -8,6 +8,7 @@ const gulp 				= require('gulp'),
 			maps				= require('gulp-sourcemaps'),
 			babel				= require('gulp-babel'),
 			del 				=	require('del'),
+			cssnano			=	require('gulp-cssnano'),
 			browserSync = require('browser-sync').create();
 
 gulp.task("prepScripts", () => {
@@ -37,10 +38,11 @@ gulp.task("sass", () => {
 		.pipe(gulp.dest('css'));
 });
 
-// gulp.task("watch", () => { 
-// 	gulp.watch('src/scss/**/*.scss', ["sass"]);
-// 	gulp.watch('src/js/*.js', ["prepScripts"]);
-// });
+gulp.task("minStyles", ["sass"], () => { 
+	return gulp.src('css/style.css')
+		.pipe(cssnano())
+		.pipe(gulp.dest('css')); 
+});
 
 gulp.task("serve", ["sass", "prepScripts"], () => {
 	browserSync.init({
@@ -50,7 +52,6 @@ gulp.task("serve", ["sass", "prepScripts"], () => {
 	gulp.watch('src/js/*.js', ["prepScripts"]);
 	gulp.watch('css/style.css').on('change', browserSync.reload);
 	gulp.watch('js/script.js').on('change', browserSync.reload);
-
 });
 
 gulp.task("clean", () => {
@@ -67,7 +68,7 @@ gulp.task("browser-sync", () => {
 	});
 });
 
-gulp.task("build", [ "minScripts", "sass" ], () => {
+gulp.task("build", [ "minScripts", "minStyles" ], () => {
 	return gulp.src([
 			'css/style.css',
 			'inc/**',

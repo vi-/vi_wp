@@ -1,13 +1,14 @@
 'use strict';
 
-const gulp 		= require('gulp'),
-			concat 	= require('gulp-concat'),
-			uglify 	= require('gulp-uglify'),
-			rename 	= require('gulp-rename'),
-			sass 		= require('gulp-sass'),
-			maps		= require('gulp-sourcemaps'),
-			babel		= require('gulp-babel'),
-			del 		=	require('del');
+const gulp 				= require('gulp'),
+			concat 			= require('gulp-concat'),
+			uglify 			= require('gulp-uglify'),
+			rename 			= require('gulp-rename'),
+			sass 				= require('gulp-sass'),
+			maps				= require('gulp-sourcemaps'),
+			babel				= require('gulp-babel'),
+			del 				=	require('del'),
+			browserSync = require('browser-sync').create();
 
 gulp.task("prepScripts", () => {
 	return gulp.src([ 
@@ -36,12 +37,21 @@ gulp.task("sass", () => {
 		.pipe(gulp.dest('css'));
 });
 
-gulp.task("watch", () => { 
+// gulp.task("watch", () => { 
+// 	gulp.watch('src/scss/**/*.scss', ["sass"]);
+// 	gulp.watch('src/js/*.js', ["prepScripts"]);
+// });
+
+gulp.task("serve", ["sass", "prepScripts"], () => {
+	browserSync.init({
+		proxy: "woah.dev"
+	});
 	gulp.watch('src/scss/**/*.scss', ["sass"]);
 	gulp.watch('src/js/*.js', ["prepScripts"]);
-});
+	gulp.watch('css/style.css').on('change', browserSync.reload);
+	gulp.watch('js/script.js').on('change', browserSync.reload);
 
-gulp.task("serve", ["watch"]);
+});
 
 gulp.task("clean", () => {
 	del([
@@ -49,7 +59,13 @@ gulp.task("clean", () => {
 		'css/style.css*',
 		'js/script.js*'
 	]);
-})
+});
+
+gulp.task("browser-sync", () => {
+	browserSync.init({
+		proxy: "woah.dev"
+	});
+});
 
 gulp.task("build", [ "minScripts", "sass" ], () => {
 	return gulp.src([

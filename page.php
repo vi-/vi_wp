@@ -16,7 +16,7 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
-
+			<img src="<?php echo get_template_directory_uri(); ?>/images/grumpy.jpg"/>
 			<?php
 			while ( have_posts() ) : the_post();
 

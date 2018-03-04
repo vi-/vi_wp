@@ -1,0 +1,34 @@
+// Responsive breakpoint tab indicator
+.resp-indicator {
+	position: fixed;
+	bottom: 30px;
+	right: 0;
+	width: 100px;
+	height: auto;
+	background-color: #E3E930;
+	z-index: 99;
+	&:after {
+		content: 'tiny';
+		text-transform: uppercase;
+		color: #fff;
+		letter-spacing: .025em;
+		font-size: .85em;
+		line-height: 2;
+		text-shadow: 0 0 3px rgba(0,0,0,.25);
+		position: relative;
+		text-align: center;
+		display: block;
+	}
+	@include respond-to(small) {
+		background-color: #007bff;
+		&:after { content: 'small'; }
+	}
+	@include respond-to(medium) {
+		background-color: #91E8BD;
+		&:after { content: 'medium'; }
+	}
+	@include respond-to(large) {
+		background-color: #F5C071;
+		&:after { content: 'large'; }
+	}
+}

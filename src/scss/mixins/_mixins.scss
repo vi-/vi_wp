@@ -1,11 +1,81 @@
-/* --------------------------------------------------
-BETTER BOX MODEL
--------------------------------------------------- */
-
 @mixin box-sizing($box-model) {
   -webkit-box-sizing: $box-model;
      -moz-box-sizing: $box-model;
           box-sizing: $box-model;
+}
+
+@mixin font-smoothing($value: true) {
+  @if ($value == true) {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  } @else {
+    -moz-osx-font-smoothing: auto;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+@mixin GridBase() {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+@mixin Grid( $breakpoint: none, $value: none, $child: Col, $gutters: false ) {
+
+  @if $gutters == true {
+    margin: 0 0 0 (-$gutter);
+    &>#{$child} { padding: 0 0 0 $gutter; }
+  }
+
+  @if $breakpoint == none {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    @if $value == none {
+      &>#{$child} { flex: 1; }
+    }
+    @if $value != none {
+      &>#{$child} { 
+        flex: 0 0 (100%/$value);
+        max-width: (100%/$value);
+      }
+    } 
+  }
+
+  @if $breakpoint != none {
+    @include respond-to($breakpoint) {
+      @if $value == none {
+        &>#{$child} { flex: 1; }
+      }
+      @if $value != none {
+        &>#{$child} {
+          flex: 0 0 (100%/$value);
+          max-width: (100%/$value);
+        }
+      }
+    }
+  }
+}
+
+@mixin Grid-item( $breakpoint: none, $value: none ) {
+  @if $breakpoint != none {
+    @include respond-to($breakpoint) {
+      @if $value != none {
+        width: calc(#{$col} * #{$value});
+        max-width: initial;
+        flex: 0 0 calc(#{$col} * #{$value});
+      }
+    }
+  }
+  @if $breakpoint == none {
+    @if $value != none {
+      width: calc(#{$col} * #{$value});
+      max-width: initial;
+      flex: 0 0 calc(#{$col} * #{$value});
+    }
+  }
 }
 
 /* --------------------------------------------------
@@ -13,17 +83,9 @@ RESPONSIVE DESIGN MIXIN
 -------------------------------------------------- */
 
 $breakpoints: (
-  'tiny'   : 420px,
-  'small'  : 767px,
-  'medium' : 992px,
-  'large'  : 1200px,
-  'xlarge' : 1500px,
-  'huge'   : 1800px
-);
-
-$breakpoints-h: (
-  'narrow' : 700px,
-  'tall'   : 901px
+  'small'  : $sm_bp,
+  'medium' : $med_bp,
+  'large'  : $lg_bp,
 );
 
 /* WIDTH MEDIA QUERIES */
@@ -39,23 +101,6 @@ $breakpoints-h: (
   }
 
   // If the key doesn't exist in the map
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Please make sure it is defined in `$breakpoints` map.";
-  }
-}
-
-/* HEIGHT MEDIA QUERIES */
-
-@mixin respond-to-h($breakpoint) {
-  $value: map-get($breakpoints-h, $breakpoint);
-
-  @if $value != null {
-    @media (min-height: $value) {
-      @content;
-    }
-  }
-
   @else {
     @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
         + "Please make sure it is defined in `$breakpoints` map.";

@@ -13,14 +13,64 @@
 @import "variables/variables";
 @import "mixins/mixins";
 
+@import "partials/type";
+@import "partials/navigation";
+
+@import "partials/helpers";
+
 *, *:after, *:before {
   @include box-sizing(border-box);
 }
 
 body {
-	background-color: #fff;
+	background-color: #eaeaea;
+	font-family: $work_sans;
 }
 
-h1 {
-	color: #a1a1a1;
+main {
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: $gutter;
+}
+
+.grumpy {
+	max-width: 150px;
+	width: 100%;
+	margin: 0 auto;
+	img { width: 100%; }
+}
+
+footer {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 1em 0;
+	.contents {
+		@include Grid( none, 1, '.box', true );
+		@include Grid( 'small', 2, '.box', true );
+		.social {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: flex-end;
+			li {
+				list-style: none;
+				margin-right: 2em;
+				a {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: center;
+					justify-content: flex-end;
+					text-decoration: none;
+					svg {
+						width: 24px;
+						path { fill: #1a1a1a; }
+					}
+					span { margin-left: .5em; }
+				}
+			}
+		}
+	}
 }

@@ -1,22 +1,12 @@
 <?php
 /**
  * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
- * @link https://codex.wordpress.org/Template_Hierarchy
- *
- * @package vi_starter
  */
-
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-			<img src="<?php echo get_template_directory_uri(); ?>/images/grumpy.jpg"/>
+			<div class="grumpy">
+				<img src="<?php echo get_template_directory_uri(); ?>/images/grumpy.jpg"/>
+			</div>
 			<?php
 			while ( have_posts() ) : the_post();
 
@@ -27,12 +17,7 @@ get_header(); ?>
 					comments_template();
 				endif;
 
-			endwhile; // End of the loop.
-			?>
+			endwhile;
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
 get_sidebar();
 get_footer();

@@ -29,6 +29,7 @@ require get_template_directory() . '/inc/script_cdn_fallback.php';
 
 // Enqueue scripts and styles.
 function vi_starter_scripts() {
+	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Work+Sans:400,500,700', false );
 	wp_enqueue_style( 'vi_starter-style', get_template_directory_uri() . '/css/style.css' );
 
 	// jQuery via CDN with fallback to local version
@@ -59,3 +60,5 @@ function vi_starter_scripts() {
 	wp_deregister_script( 'wp-embed' );
 }
 add_action( 'wp_enqueue_scripts', 'vi_starter_scripts' );
+
+require get_template_directory() . '/inc/template-tags.php';

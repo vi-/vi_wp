@@ -62,7 +62,7 @@ gulp.task("minImages", () => {
 
 gulp.task("serve", ["sass", "prepScripts", "minImages"], () => {
 	browserSync.init({
-		proxy: "woah.dev"
+		proxy: "wp.test"
 	});
 	gulp.watch('src/scss/**/*.scss', ["sass"]);
 	gulp.watch('src/js/*.js', ["prepScripts"]);
@@ -85,7 +85,7 @@ gulp.task("clean", () => {
 
 gulp.task("browser-sync", () => {
 	browserSync.init({
-		proxy: "woah.dev"
+		proxy: "wp.test"
 	});
 });
 

@@ -1,34 +1,34 @@
 'use strict';
 
 const gulp 					= require('gulp'),
-			concat 				= require('gulp-concat'),
 			uglify 				= require('gulp-uglify'),
 			rename 				= require('gulp-rename'),
 			sass 					= require('gulp-sass'),
 			maps					= require('gulp-sourcemaps'),
-			babel					= require('gulp-babel'),
+			babelify			= require('babelify'),
 			del 					=	require('del'),
 			cssnano				=	require('gulp-cssnano'),
 			browserSync 	= require('browser-sync').create(),
 			autoprefixer	= require('gulp-autoprefixer'),
-			imagemin			= require('gulp-imagemin');
+			imagemin			= require('gulp-imagemin'),
+			browserify 		= require('browserify'),
+			source 				= require('vinyl-source-stream'),
+			buffer 				= require('vinyl-buffer');
 
-gulp.task("prepScripts", () => {
-	return gulp.src([ 
-		'src/js/dependencies.js', 
-		'src/js/definitions.js', 
-		'src/js/execution.js'])
-	.pipe(maps.init())
-	.pipe(babel())
-	.pipe(concat('script.js'))
-	.pipe(maps.write('.'))
-	.pipe(gulp.dest("js"));
-});
-
-gulp.task("minScripts", ["prepScripts"], () => {
-	return gulp.src("js/script.js")
-		.pipe(uglify())
-		.pipe(gulp.dest('js'));
+gulp.task( "scripts", () => {
+	const b = browserify({
+		entries: './src/js/execution.js',
+		debug: true,
+		transform: [babelify]
+	});
+	return b.bundle()
+		.pipe(source('script.js'))
+		.pipe(buffer())
+		.pipe(maps.init({ loadMaps: true }))
+			// transforms
+			.pipe(uglify())
+		.pipe(maps.write('./'))
+		.pipe(gulp.dest( './js/' ));
 });
 
 gulp.task("sass", () => {
@@ -60,12 +60,12 @@ gulp.task("minImages", () => {
 		.pipe(gulp.dest('images/'))
 });
 
-gulp.task("serve", ["sass", "prepScripts", "minImages"], () => {
+gulp.task("serve", ["sass", "scripts", "minImages"], () => {
 	browserSync.init({
 		proxy: "wp.test"
 	});
 	gulp.watch('src/scss/**/*.scss', ["sass"]);
-	gulp.watch('src/js/*.js', ["prepScripts"]);
+	gulp.watch('src/js/*.js', ["scripts"]);
 	gulp.watch('src/images/*', ["minImages"]);
 	gulp.watch('css/style.css').on('change', browserSync.reload);
 	gulp.watch('js/script.js').on('change', browserSync.reload);
@@ -81,12 +81,6 @@ gulp.task("clean", () => {
 		'css/style.css*',
 		'js/script.js*'
 	]);
-});
-
-gulp.task("browser-sync", () => {
-	browserSync.init({
-		proxy: "wp.test"
-	});
 });
 
 gulp.task("build", [ "minScripts", "minStyles" ], () => {

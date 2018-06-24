@@ -15,6 +15,7 @@
 
 @import "partials/type";
 @import "partials/navigation";
+@import "partials/blocks/_flex_video.scss";
 
 @import "partials/helpers";
 
@@ -34,11 +35,10 @@ main {
 	padding: $gutter;
 }
 
-.grumpy {
-	max-width: 150px;
+.video_hero {
 	width: 100%;
-	margin: 0 auto;
-	img { width: 100%; }
+	height: 600px;
+	position: relative;
 }
 
 footer {

@@ -4,8 +4,10 @@
  */
 get_header(); ?>
 
-			<div class="grumpy">
-				<img src="<?php echo get_template_directory_uri(); ?>/images/grumpy.jpg"/>
+			<div class="video_hero">
+				<?php 
+					get_template_part( 'template-parts/blocks/_flex_video' );
+				?>
 			</div>
 			<?php
 			while ( have_posts() ) : the_post();

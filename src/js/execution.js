@@ -1,3 +1,4 @@
-const burger = document.querySelector('.nav-trigger');
+let nav = require("./definitions.js");
 
-burger.addEventListener( 'click', (e) => toggleResponsiveMenu() );
+const burger = document.querySelector('.nav-trigger');
+burger.addEventListener( 'click', (e) => nav.toggleResponsiveMenu() );

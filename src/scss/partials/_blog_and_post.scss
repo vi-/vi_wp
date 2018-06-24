@@ -1,0 +1,49 @@
+.pagination,
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+	width: 100%;
+	.nav-links {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.nav-previous,
+	.nav-next {
+		float: none;
+		width: auto;
+	}
+}
+
+/* ============================== 
+	 Blog layout
+	 ============================== */
+
+.blog-posts {
+	display: flex;
+	flex-wrap: wrap;
+	.post-extract {
+		padding: 15px $gutter;
+		@include respond-to(small) {
+			width: 50%;
+		}
+		@include respond-to(large) {
+			width: 33.3%;
+		}
+	}
+	.link-wrap { 
+		text-decoration: none;
+		color: initial; 
+	}
+	.header { color: $main_copy; }
+	.categories {
+		a {
+			text-decoration: none;
+			color: #666;
+			padding: 0.25em .5em;
+			background-color: #ccc;
+		}
+	}
+}

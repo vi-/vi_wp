@@ -35,6 +35,8 @@ main {
 	padding: $gutter;
 }
 
+ul { margin-left: 0; }
+
 .video_hero {
 	width: 100%;
 	height: 600px;
@@ -74,3 +76,5 @@ footer {
 		}
 	}
 }
+
+@import "partials/blog_and_post";

@@ -31,4 +31,8 @@
 		background-color: #F5C071;
 		&:after { content: 'large'; }
 	}
+	@include respond-to(xl) {
+		background-color: gold;
+		&:after { content: 'xl'; }
+	}
 }

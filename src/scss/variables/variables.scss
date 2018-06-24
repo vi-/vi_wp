@@ -1,6 +1,7 @@
 /* Colors */
 
 $primary_color: 	#1a1a1a;
+$link_color: 			#5eabed;
 $main_copy: 			#595959;
 $dark_grey: 			#4A4A4A;
 
@@ -11,9 +12,10 @@ $gutter: 2em;
 $col_pad: 3em;
 
 /* Responsive Break Points */
-$sm_bp: 40em;
-$med_bp: 64em;
-$lg_bp: 87.5em;
+$sm_bp:		31.25em;	// 500px
+$med_bp:	48em;			// 768px
+$lg_bp:		64em;			// 1024px;
+$xl_bp:		105em;		// 1680px;
 
 /* Fonts */
 $work_sans: 'Work Sans', Helvetica Neueu, Helvetica, Arial, sans-serif;

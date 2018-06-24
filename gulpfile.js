@@ -65,6 +65,7 @@ gulp.task("serve", ["sass", "scripts", "minImages"], () => {
 		proxy: "wp.test"
 	});
 	gulp.watch('src/scss/**/*.scss', ["sass"]);
+	gulp.watch('src/js/**/*.js', ["scripts"]);
 	gulp.watch('src/js/*.js', ["scripts"]);
 	gulp.watch('src/images/*', ["minImages"]);
 	gulp.watch('css/style.css').on('change', browserSync.reload);

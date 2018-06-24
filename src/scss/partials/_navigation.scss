@@ -17,20 +17,23 @@
 	transform: translate( 0, -50px );
 	transition: .15s transform $default_easing;
 	z-index: 10;
+	text-align: right;
 	&.is-open {
 		transform: translate( 0, 0 );
 	}
 	.menu {
 		max-width: 1200px;
-		margin: 0 auto;
 		padding: 0 $gutter;
 	}
 	li {
 		margin-right: $gutter;
 		line-height: 3em;
+		float: none;
+		display: inline-block;
 		&:hover {
 			ul.children { left: -1em; }
 		}
+		&:last-of-type { margin-right: 0; }
 	}
 	ul.children {
 		background-color: #fff;

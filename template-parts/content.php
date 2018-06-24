@@ -1,49 +1,33 @@
 <?php
 /**
- * Template part for displaying posts
+ * Template part for displaying posts (Single Post & in Blog)
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
 
-		if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php vi_starter_posted_on(); ?>
-		</div><!-- .entry-meta -->
-		<?php
-		endif; ?>
-	</header><!-- .entry-header -->
+<?php if ( is_singular() ): ?>
 
-	<div class="entry-content">
-		<?php
-			the_content( sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'vi_starter' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			) );
+<article class="single-post">
+	<?php the_title('<h2 class="entry-title">', '</h2>'); ?>
+	<div class="post-content">
+		<?php the_content(); ?>
+	</div>
+</article>
 
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'vi_starter' ),
-				'after'  => '</div>',
-			) );
-		?>
-	</div><!-- .entry-content -->
+<?php else: ?>
 
-	<footer class="entry-footer">
-		<?php vi_starter_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+<article class="post-extract">
+	<a href="<?php the_permalink(); ?>" class="link-wrap">
+		<header class="posts-header">
+			<?php the_title('<h2 class="entry-title">', '</h2>'); ?>
+			<span class="date"><?php echo get_the_date('l d F Y'); ?></span>
+		</header>
+		
+		<div class="contents">
+			<?php echo '<p>'.wp_trim_words( get_the_content(), 35 ).'</p>'; ?>
+		</div>
+	</a>
+	<div class="categories"><?php the_category(' '); ?></div>
+</article>
+
+<?php endif; ?>

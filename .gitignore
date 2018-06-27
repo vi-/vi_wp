@@ -8,6 +8,8 @@ Thumbs.db
 node_modules
 dist
 
+!src/
+
 css
 js
 images

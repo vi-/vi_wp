@@ -11,5 +11,5 @@ css
 js
 images
 
-!src/js
+!src/*
 

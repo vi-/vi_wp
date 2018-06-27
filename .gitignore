@@ -7,9 +7,9 @@ ehthumbs.db
 Thumbs.db
 node_modules
 dist
-
-!src/js
-
 css
 js
 images
+
+!src/js
+

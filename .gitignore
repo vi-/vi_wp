@@ -8,7 +8,7 @@ Thumbs.db
 node_modules
 dist
 
-!src/
+!src/js
 
 css
 js

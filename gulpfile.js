@@ -1,19 +1,19 @@
 'use strict';
 
-const gulp 					= require('gulp'),
-			uglify 				= require('gulp-uglify'),
-			rename 				= require('gulp-rename'),
-			sass 					= require('gulp-sass'),
-			maps					= require('gulp-sourcemaps'),
-			babelify			= require('babelify'),
-			del 					=	require('del'),
-			cssnano				=	require('gulp-cssnano'),
-			browserSync 	= require('browser-sync').create(),
-			autoprefixer	= require('gulp-autoprefixer'),
-			imagemin			= require('gulp-imagemin'),
-			browserify 		= require('browserify'),
-			source 				= require('vinyl-source-stream'),
-			buffer 				= require('vinyl-buffer');
+const	gulp				= require('gulp'),
+	uglify 				= require('gulp-uglify'),
+	rename 				= require('gulp-rename'),
+	sass 				= require('gulp-sass'),
+	maps				= require('gulp-sourcemaps'),
+	babelify			= require('babelify'),
+	del 				= require('del'),
+	cssnano				= require('gulp-cssnano'),
+	browserSync 			= require('browser-sync').create(),
+	autoprefixer			= require('gulp-autoprefixer'),
+	imagemin			= require('gulp-imagemin'),
+	browserify 			= require('browserify'),
+	source 				= require('vinyl-source-stream'),
+	buffer 				= require('vinyl-buffer');
 
 gulp.task( "scripts", () => {
 	const b = browserify({

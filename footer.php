@@ -2,7 +2,7 @@
 	<footer class="site-footer">
 		<div class="contents">
 			<div class="box">
-				<p>Copyright &copy; <?php the_date('Y') ?></p>
+				<p>Copyright &copy; <?php echo date('Y'); ?></p>
 			</div>
 			<div class="box">
 				<ul class="social">

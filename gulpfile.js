@@ -1,19 +1,19 @@
 'use strict';
 
 const	gulp				= require('gulp'),
-	uglify 				= require('gulp-uglify'),
-	rename 				= require('gulp-rename'),
-	sass 				= require('gulp-sass'),
-	maps				= require('gulp-sourcemaps'),
-	babelify			= require('babelify'),
-	del 				= require('del'),
-	cssnano				= require('gulp-cssnano'),
-	browserSync 			= require('browser-sync').create(),
-	autoprefixer			= require('gulp-autoprefixer'),
-	imagemin			= require('gulp-imagemin'),
-	browserify 			= require('browserify'),
-	source 				= require('vinyl-source-stream'),
-	buffer 				= require('vinyl-buffer');
+		uglify 				= require('gulp-uglify'),
+		rename 				= require('gulp-rename'),
+		sass 					= require('gulp-sass'),
+		maps					= require('gulp-sourcemaps'),
+		babelify			= require('babelify'),
+		del 					= require('del'),
+		cssnano				= require('gulp-cssnano'),
+		browserSync 	= require('browser-sync').create(),
+		autoprefixer	= require('gulp-autoprefixer'),
+		imagemin			= require('gulp-imagemin'),
+		browserify 		= require('browserify'),
+		source 				= require('vinyl-source-stream'),
+		buffer 				= require('vinyl-buffer');
 
 gulp.task( "scripts", () => {
 	const b = browserify({
@@ -32,18 +32,18 @@ gulp.task( "scripts", () => {
 });
 
 gulp.task("sass", () => {
-	return gulp.src('src/scss/main.scss')
+	return gulp.src('src/scss/*.scss')
 		.pipe(maps.init())
 		.pipe(sass().on('error', function(err) {
 			console.error(err.message);
-    	browserSync.notify(err.message, 3000);
-    	this.emit('end');
+			browserSync.notify(err.message, 3000);
+			this.emit('end');
 		}))
-		.pipe(rename('style.css'))
+
 		.pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-    }))
+						browsers: ['last 2 versions'],
+						cascade: false
+		}))
 		.pipe(maps.write('./'))
 		.pipe(gulp.dest('css'));
 });
@@ -62,7 +62,7 @@ gulp.task("minImages", () => {
 
 gulp.task("serve", ["sass", "scripts", "minImages"], () => {
 	browserSync.init({
-		proxy: "wp.test"
+		proxy: "starter.test"
 	});
 	gulp.watch('src/scss/**/*.scss', ["sass"]);
 	gulp.watch('src/js/**/*.js', ["scripts"]);

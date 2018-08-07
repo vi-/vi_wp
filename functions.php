@@ -4,6 +4,7 @@ if ( ! function_exists( 'vi_starter_setup' ) ) :
 	function vi_starter_setup() {
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
+		add_editor_style( 'css/editor.css' );
 
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'vi_starter' ),
@@ -19,6 +20,25 @@ if ( ! function_exists( 'vi_starter_setup' ) ) :
 	}
 endif;
 add_action( 'after_setup_theme', 'vi_starter_setup' );
+
+// Custom colors for Tiny MCE
+function my_mce4_options($init) {
+ 
+		$custom_colors = '
+				"00A79D", "Green pine",
+				"372D2B", "Chocolate",
+				"D8D8D8", "Light grey",
+				"000000", "Black",
+				"ffffff", "white"
+		';
+ 
+		// build color grid default+custom colors
+		$init['textcolor_map'] = '['.$custom_colors.']';
+		// 8 swatches per row
+		$init['textcolor_rows'] = 1;
+		return $init;
+}
+add_filter('tiny_mce_before_init', 'my_mce4_options');
 
 // Remove EMOJI code from the head
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );

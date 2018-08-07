@@ -1,93 +1,102 @@
 @mixin box-sizing($box-model) {
-  -webkit-box-sizing: $box-model;
-     -moz-box-sizing: $box-model;
-          box-sizing: $box-model;
+	-webkit-box-sizing: $box-model;
+		 -moz-box-sizing: $box-model;
+					box-sizing: $box-model;
 }
 
 @mixin font-smoothing($value: true) {
-  @if ($value == true) {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-  } @else {
-    -moz-osx-font-smoothing: auto;
-    -webkit-font-smoothing: subpixel-antialiased;
-  }
+	@if ($value == true) {
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+	} @else {
+		-moz-osx-font-smoothing: auto;
+		-webkit-font-smoothing: subpixel-antialiased;
+	}
 }
 
 @mixin GridBase() {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	padding: 0;
 }
 
 @mixin Grid( $breakpoint: none, $value: none, $child: Col, $gutters: false ) {
 
-  @if $gutters == true {
-    margin: 0 0 0 (-$gutter);
-    &>#{$child} { padding: 0 0 0 $gutter; }
-  }
+	@if $gutters == true {
+		margin: 0 0 0 (-$gutter);
+		&>#{$child} { padding: 0 0 0 $gutter; }
+	}
 
-  @if $breakpoint == none {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-    @if $value == none {
-      &>#{$child} { flex: 1; }
-    }
-    @if $value != none {
-      &>#{$child} { 
-        flex: 0 0 (100%/$value);
-        max-width: (100%/$value);
-      }
-    } 
-  }
+	@if $breakpoint == none {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		padding: 0;
+		@if $value == none {
+			&>#{$child} { flex: 1; }
+		}
+		@if $value != none {
+			&>#{$child} { 
+				flex: 0 0 (100%/$value);
+				max-width: (100%/$value);
+			}
+		} 
+	}
 
-  @if $breakpoint != none {
-    @include respond-to($breakpoint) {
-      @if $value == none {
-        &>#{$child} { flex: 1; }
-      }
-      @if $value != none {
-        &>#{$child} {
-          flex: 0 0 (100%/$value);
-          max-width: (100%/$value);
-        }
-      }
-    }
-  }
+	@if $breakpoint != none {
+		@include respond-to($breakpoint) {
+			@if $value == none {
+				&>#{$child} { flex: 1; }
+			}
+			@if $value != none {
+				&>#{$child} {
+					flex: 0 0 (100%/$value);
+					max-width: (100%/$value);
+				}
+			}
+		}
+	}
 }
 
 @mixin Grid-item( $breakpoint: none, $value: none ) {
-  @if $breakpoint != none {
-    @include respond-to($breakpoint) {
-      @if $value != none {
-        width: calc(#{$col} * #{$value});
-        max-width: initial;
-        flex: 0 0 calc(#{$col} * #{$value});
-      }
-    }
-  }
-  @if $breakpoint == none {
-    @if $value != none {
-      width: calc(#{$col} * #{$value});
-      max-width: initial;
-      flex: 0 0 calc(#{$col} * #{$value});
-    }
-  }
+	@if $breakpoint != none {
+		@include respond-to($breakpoint) {
+			@if $value != none {
+				width: calc(#{$col} * #{$value});
+				max-width: initial;
+				flex: 0 0 calc(#{$col} * #{$value});
+			}
+		}
+	}
+	@if $breakpoint == none {
+		@if $value != none {
+			width: calc(#{$col} * #{$value});
+			max-width: initial;
+			flex: 0 0 calc(#{$col} * #{$value});
+		}
+	}
 }
 
 @mixin object-fit($fit: fill, $position: null){
-  -o-object-fit: $fit;
-     object-fit: $fit;
-  @if $position {
-    -o-object-position: $position;
-       object-position: $position;
-    font-family: 'object-fit: #{$fit}; object-position: #{$position}';
-  } @else {
-    font-family: 'object-fit: #{$fit}';
-  }
+	-o-object-fit: $fit;
+		 object-fit: $fit;
+	@if $position {
+		-o-object-position: $position;
+			 object-position: $position;
+		font-family: 'object-fit: #{$fit}; object-position: #{$position}';
+	} @else {
+		font-family: 'object-fit: #{$fit}';
+	}
+}
+
+@mixin ShitBrowser( $selector, $browsers: ('ie11', 'edge') ) {
+	@if index( $browsers, 'ie11' ) {
+		*::-ms-backdrop, #{$selector} { @content; }
+	}
+	@if index( $browsers, 'edge' ) {
+		_:-ms-lang(x), #{$selector} { @content; }
+	}
 }
 
 /* --------------------------------------------------
@@ -95,27 +104,27 @@ RESPONSIVE DESIGN MIXIN
 -------------------------------------------------- */
 
 $breakpoints: (
-  'small'  : $sm_bp,
-  'medium' : $med_bp,
-  'large'  : $lg_bp,
-  'xl'     : $xl_bp,
+	'small'  : $sm_bp,
+	'medium' : $med_bp,
+	'large'  : $lg_bp,
+	'xl'     : $xl_bp,
 );
 
 /* WIDTH MEDIA QUERIES */
 
 @mixin respond-to($breakpoint) {
-  $value: map-get($breakpoints, $breakpoint);
-  // If the key exists in the map
-  @if $value != null {
-    // Prints a media query based on the value
-    @media (min-width: $value) {
-      @content;
-    }
-  }
+	$value: map-get($breakpoints, $breakpoint);
+	// If the key exists in the map
+	@if $value != null {
+		// Prints a media query based on the value
+		@media (min-width: $value) {
+			@content;
+		}
+	}
 
-  // If the key doesn't exist in the map
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-        + "Please make sure it is defined in `$breakpoints` map.";
-  }
+	// If the key doesn't exist in the map
+	@else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+				+ "Please make sure it is defined in `$breakpoints` map.";
+	}
 }

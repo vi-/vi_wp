@@ -15,7 +15,8 @@
 
 @import "partials/type";
 @import "partials/navigation";
-@import "partials/blocks/_flex_video.scss";
+@import "partials/blocks/_flex_video";
+@import "partials/blocks/_gmaps";
 
 @import "partials/helpers";
 
@@ -33,6 +34,11 @@ main {
 	margin: 0 auto;
 	background-color: #fff;
 	padding: $gutter;
+}
+
+section {
+	width: 100%;
+	padding: 50px 0;
 }
 
 ul { margin-left: 0; }

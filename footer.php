@@ -2,6 +2,12 @@
 	<footer class="site-footer">
 		<div class="contents">
 			<div class="box">
+				<?php
+					wp_nav_menu( array(
+						'theme_location' => 'footer-menu',
+						'menu_id'        => 'footer-menu',
+					));
+				?>
 				<p>Copyright &copy; <?php echo date('Y'); ?></p>
 			</div>
 			<div class="box">

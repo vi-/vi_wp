@@ -7,7 +7,8 @@ if ( ! function_exists( 'vi_starter_setup' ) ) :
 		add_editor_style( 'css/editor.css' );
 
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'vi_starter' ),
+			'primary' => esc_html__( 'Primary', 'vi_starter' ),
+			'footer-menu'	=> esc_html__( 'Footer', 'vi_starter' )
 		) );
 
 		add_theme_support( 'html5', array(

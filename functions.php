@@ -45,9 +45,6 @@ add_filter('tiny_mce_before_init', 'my_mce4_options');
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-// Loads augmented script loader (for CDN w. Local Fallback)
-require get_template_directory() . '/inc/script_cdn_fallback.php';
-
 // Enqueue scripts and styles.
 function vi_starter_scripts() {
 	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Work+Sans:400,500,700', false );

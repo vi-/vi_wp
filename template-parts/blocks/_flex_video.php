@@ -4,7 +4,7 @@ global $vid_src;
 global $vid_params;
 
 if (!isset($vid_src)) {
-	$vid_src = "https://player.vimeo.com/external/237675754.hd.mp4?s=617321c6cb5fee1650f7b8751c5ef0ab9146d6f7&profile_id=174";
+	$vid_src = "https://player.vimeo.com/external/282975264.sd.mp4?s=e0e25cca3d18d7391d279cd759e4812708d556dd&profile_id=165";
 }
 
 if (!isset($vid_params)) {

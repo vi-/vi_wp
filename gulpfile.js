@@ -49,8 +49,14 @@ const compileJS = () => {
 	const b = browserify({
 	  entries: './src/js/myscript.js',
 	  debug: true,
-	  transform: [babelify]
-	});
+	}).transform( 'babelify', { presets: [
+		[
+			'@babel/preset-env', {
+				useBuiltIns: 'usage'
+			}
+		]
+	]});
+
 	return b.bundle()
 	  .pipe(source( 'script.js' ))
 	  .pipe(buffer())
@@ -76,18 +82,21 @@ const copyFonts = () => {
 		.pipe( dest( './fonts' ) );
 }
 
+const browserReload = ( done ) => {
+	browserSync.reload();
+	done();
+}
+
 const watchFiles = () => {
 	watch( 'src/scss/**/*.scss', compileCSS );
-	watch( 'src/js/**/*.js', compileJS );
-	watch( 'js/script.js' ).on( 'change', browserSync.reload );
-	watch( 'src/images/*', minifyImages );
-	watch( 'images/*' ).on( 'change', browserSync.reload );
+	watch( 'src/js/**/*.js', series( compileJS, minifyJS, browserReload ) );
+	watch( 'src/images/*', series( minifyImages, browserReload ) );
 	watch( 'src/fonts/*', copyFonts );
-	watch( '**/*.php' ).on('change', browserSync.reload);
+	watch( '**/*.php' ).on('change', browserReload);
 	console.log( '👀 Watching files 👀' );
 }
 
-exports.default = series( parallel( compileCSS, compileJS ), serveSite );
+exports.default = series( parallel( compileCSS, compileJS ), minifyJS, serveSite );
 exports.build 	= series(
 	parallel( compileCSS, compileJS ), 
 	parallel( minifyCSS, minifyJS ),

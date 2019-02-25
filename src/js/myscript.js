@@ -2,11 +2,8 @@
 	 Plugins / Polyfills
 	 ============================== */
 
-// Babel polyfill (for ie9 etc.)
-require("babel-polyfill");
 // Object-fit polyfill
 const objectFitImages = require('object-fit-images');
-
 
 /* ============================== 
 	 My modules / components
@@ -48,3 +45,8 @@ objectFitImages();
 
 const burger = document.querySelector('.nav-trigger');
 burger.addEventListener( 'click', (e) => nav.toggleResponsiveMenu() );
+
+let arr = ['hello', 'borat'];
+let arr2 = ['cheese', 'stuff', ...arr];
+console.log( `Le array good sir is ${arr2.length} long` );
+console.log( Array.from("BORAT!!!") );

@@ -3,11 +3,9 @@
 const { series, parallel, src, dest, watch } = require( 'gulp' );
 
 const	uglify				= require('gulp-uglify'),
-			rename				= require('gulp-rename'),
 			sass					= require('gulp-sass'),
 			maps					= require('gulp-sourcemaps'),
 			babelify			= require('babelify'),
-			del						= require('del'),
 			cssnano				= require('gulp-cssnano'),
 			browserSync		= require('browser-sync').create(),
 			autoprefixer	= require('gulp-autoprefixer'),
@@ -37,7 +35,8 @@ const compileCSS = () => {
 						cascade: false
 		}))
 		.pipe(maps.write( './' ))
-		.pipe(dest( 'css' ));
+		.pipe(dest( 'css' ))
+		.pipe(browserSync.stream());
 }
 
 const minifyCSS = () => {
@@ -79,7 +78,6 @@ const copyFonts = () => {
 
 const watchFiles = () => {
 	watch( 'src/scss/**/*.scss', compileCSS );
-	watch( 'css/style.css' ).on( 'change', browserSync.reload );
 	watch( 'src/js/**/*.js', compileJS );
 	watch( 'js/script.js' ).on( 'change', browserSync.reload );
 	watch( 'src/images/*', minifyImages );

@@ -91,8 +91,8 @@ const watchFiles = () => {
 	watch( 'src/scss/**/*.scss', compileCSS );
 	watch( 'src/js/**/*.js', series( compileJS, minifyJS, browserReload ) );
 	watch( 'src/images/*', series( minifyImages, browserReload ) );
-	watch( 'src/fonts/*', copyFonts );
-	watch( '**/*.php' ).on('change', browserReload);
+  watch( 'src/fonts/*', copyFonts );
+  watch( '**/*.php', browserReload );
 	console.log( '👀 Watching files 👀' );
 }
 

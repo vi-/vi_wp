@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 <h1>This is your homepage son. <br>Here, have a video...</h1>
+<?php get_template_part( 'template-parts/acf_flex' ); ?>
 <section class="video_hero">
 	<?php 
 		get_template_part( 'template-parts/blocks/_flex_video' );

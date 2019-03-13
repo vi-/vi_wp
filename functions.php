@@ -63,3 +63,4 @@ function vi_starter_scripts() {
 add_action( 'wp_enqueue_scripts', 'vi_starter_scripts' );
 
 require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/globals.php';

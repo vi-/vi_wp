@@ -31,3 +31,24 @@ function combine_classes( $classes ) {
 	}
 	return $result;
 }
+
+// Util function to generate BG for ACF Flex blocks
+function make_bg( $bg ) {
+	$type = $bg['bg_type'];
+	if ( $type === 'color' ) {
+		$color = $bg['color'];
+		return 'style="background-color: '.$color.'"';
+	} else if ( $type === 'vid' ) {
+		return $bg['video_src'];
+	} else if ( $type === 'img' ) {
+		if ( $bg['overlay'] === 'red' ) {
+			return 'style="background: #E21E1A url('.wp_get_attachment_image_url( $bg['image'], 'large' ).')"';
+		} else if ( $bg['overlay'] === 'black' ) {
+			return 'style="background: rgba(0,0,0,.4) url('.wp_get_attachment_image_url( $bg['image'], 'large' ).')"';
+		} else {
+			return 'style="background-image: url('.wp_get_attachment_image_url( $bg['image'], 'large' ).')"';
+		}
+	} else if ( $type === 'pattern' ) {
+		return null;
+	}
+}

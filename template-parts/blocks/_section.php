@@ -8,11 +8,12 @@ $classes = combine_classes( array(
   'block',
   $padding,
   $custom_classes,
-  'yeah_baby'
+  'yeah_baby',
+  ($bg['reverse_type']) ? 'reverse' : null
 ));
 
 ?>
 
-<section class="<?php echo $classes; ?>">
+<section class="<?php echo $classes; ?>" <?php echo make_bg( $bg ); ?>>
   <?php echo $content; ?>
 </section>

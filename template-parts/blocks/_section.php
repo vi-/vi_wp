@@ -6,14 +6,16 @@ $content = get_sub_field( 'content' );
 
 $classes = combine_classes( array(
   'block',
+  'section',
   $padding,
   $custom_classes,
-  'yeah_baby',
+  ($bg['bg_type']) ? 'bg_'.$bg['bg_type'] : null,
   ($bg['reverse_type']) ? 'reverse' : null
 ));
 
-?>
-
-<section class="<?php echo $classes; ?>" <?php echo make_bg( $bg ); ?>>
-  <?php echo $content; ?>
-</section>
+echo make_bg( $bg, 'start', $classes ); ?>
+  <div class="wrapper">
+    <?php echo $content; ?>
+  </div>
+<?php
+echo make_bg( $bg, 'end', $classes ); ?>

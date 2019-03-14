@@ -12,4 +12,5 @@ js
 images
 
 !src/*
+src/.DS_Store
 

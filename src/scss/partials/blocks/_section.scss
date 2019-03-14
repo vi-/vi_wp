@@ -1,0 +1,8 @@
+.block.section {
+
+  // Image backgrounds always cover area, default from center
+  &.bg_img {
+    background-size: cover;
+    background-position: center center;
+  }
+}

@@ -14,7 +14,7 @@ $classes = combine_classes( array(
 ));
 
 echo make_bg( $bg, 'start', $classes ); ?>
-  <div class="wrapper">
+  <div class="wrapper content">
     <?php echo $content; ?>
   </div>
 <?php

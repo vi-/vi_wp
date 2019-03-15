@@ -5,4 +5,12 @@
     background-size: cover;
     background-position: center center;
   }
+  &.bg_vid {
+    position: relative;
+    min-height: 500px;
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+  }
 }

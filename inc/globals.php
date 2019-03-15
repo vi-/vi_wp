@@ -50,7 +50,10 @@ function make_bg( $bg, $part, $classes ) {
    * PROCESS VIDEO BGs
    */
 	} else if ( $type === 'vid' ) {
-    return $bg['video_src'];
+    if ( $part === 'end' ) return '</section>';
+    $v_params = 'autoplay loop muted playsinline';
+    $section_start = '<section class="'.$classes.'" ><section class="flex-video-bg">';
+    return $section_start . '<video ' . $v_params . ' src=' . $bg['video_src'] . '></video></section>';
   /**
    * PROCESS IMAGE BGs
    */

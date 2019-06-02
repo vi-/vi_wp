@@ -13,10 +13,12 @@ body {
 .site-body {
 	margin: 0 auto;
 	background-color: $white;
-	padding-top: $spacer*5;
+	padding-top: $spacer*3.15;
+	@include breakpoint(md) { padding-top: $spacer*5; }
 }
 
-section {
+section,
+article {
 	padding: $spacer 0;
 	@include breakpoint(md) { padding: $spacer*2 0; }
 }

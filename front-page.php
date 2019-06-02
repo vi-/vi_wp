@@ -1,7 +1,7 @@
 <?php get_header(); ?>
-<div class="container">
+<section class="container">
 	<h1>Front-page, this is your home...</h1>
-</div>
+</section>
 <?php get_template_part( 'template-parts/acf_flex' ); ?>
 <section class="video-hero">
 	<?php 

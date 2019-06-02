@@ -5,10 +5,12 @@ const { series, parallel, src, dest, watch } = require( 'gulp' );
 const	uglify				= require('gulp-uglify'),
 			sass					= require('gulp-sass'),
 			maps					= require('gulp-sourcemaps'),
+			postcss 			= require('gulp-postcss'),
+			autoprefixer 	= require('autoprefixer'),
 			babelify			= require('babelify'),
-			cssnano				= require('gulp-cssnano'),
+			cssnano				= require('cssnano'),
+			atImport 			= require('postcss-import'),
 			browserSync		= require('browser-sync').create(),
-			autoprefixer	= require('gulp-autoprefixer'),
 			imagemin			= require('gulp-imagemin'),
 			browserify		= require('browserify'),
 			source				= require('vinyl-source-stream'),
@@ -29,11 +31,11 @@ const compileCSS = () => {
 			browserSync.notify( err.message, 3000 );
 			this.emit( 'end' );
 		}))
-
-		.pipe(autoprefixer({
-						browsers: [ 'last 2 versions' ],
-						cascade: false
-		}))
+		.pipe(postcss([
+      autoprefixer(),
+      atImport(),
+      cssnano()
+    ]))
 		.pipe(maps.write( './' ))
 		.pipe(dest( 'css' ))
 		.pipe(browserSync.stream());
@@ -49,13 +51,7 @@ const compileJS = () => {
 	const b = browserify({
 	  entries: './src/js/myscript.js',
 	  debug: true,
-	}).transform( 'babelify', { presets: [
-		[
-			'@babel/preset-env', {
-				useBuiltIns: 'usage'
-			}
-		]
-	]});
+	}).transform( 'babelify' )
 
 	return b.bundle()
 	  .pipe(source( 'script.js' ))

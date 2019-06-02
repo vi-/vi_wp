@@ -1,30 +1,49 @@
 {
-  "name": "vi_starter",
-  "version": "1.0.0",
-  "description": "A starter WordPress theme with Gulp & bunch of stuff",
-  "main": "index.php",
-  "author": "Victor Ivanov <hi@vctr.is>",
-  "license": "GPL-2.0",
-  "private": false,
-  "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "babelify": "^10.0.0",
-    "browser-sync": "^2.18.13",
-    "browserify": "^16.2.2",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-imagemin": "^3.4.0",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.1",
-    "gulp-uglify": "^3.0.0",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "object-fit-images": "^3.2.3"
-  }
+ "name": "vi_starter",
+ "version": "1.0.0",
+ "description": "A starter WordPress theme with Gulp & bunch of stuff",
+ "main": "index.php",
+ "author": "Victor Ivanov <hi@vctr.is>",
+ "license": "GPL-2.0",
+ "private": false,
+ "devDependencies": {
+  "@babel/core": "^7.3.3",
+  "@babel/preset-env": "^7.3.1",
+  "autoprefixer": "^9.5.1",
+  "babelify": "^10.0.0",
+  "browser-sync": "^2.18.13",
+  "browserify": "^16.2.2",
+  "core-js": "^3.1.3",
+  "cssnano": "^4.1.10",
+  "gulp": "^4.0.0",
+  "gulp-concat": "^2.6.1",
+  "gulp-imagemin": "^3.4.0",
+  "gulp-postcss": "^8.0.0",
+  "gulp-sass": "^3.1.0",
+  "gulp-sourcemaps": "^2.6.1",
+  "gulp-uglify": "^3.0.0",
+  "postcss-import": "^12.0.1",
+  "vinyl-buffer": "^1.0.1",
+  "vinyl-source-stream": "^2.0.0"
+ },
+ "dependencies": {
+  "@babel/polyfill": "^7.2.5",
+  "object-fit-images": "^3.2.3"
+ },
+ "babel": {
+  "presets": [
+   [
+    "@babel/preset-env",
+    {
+     "corejs": "3",
+     "useBuiltIns": "usage"
+    }
+   ]
+  ]
+ },
+ "browserslist": [
+  "last 1 version",
+  "> 0.5%",
+  "not dead"
+ ]
 }

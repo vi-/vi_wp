@@ -25,13 +25,13 @@
 	display: flex;
 	flex-wrap: wrap;
 	.post-extract {
-		padding: 15px $spacer;
-		@include breakpoint(sm) {
-			width: 50%;
+		margin-bottom: $spacer;
+		@include breakpoint( md ) {
+			margin-bottom: $spacer*2;
 		}
-		@include breakpoint(lg) {
-			width: 33.3%;
-		}
+	}
+	.contents {
+		word-break: break-word;
 	}
 	.link-wrap { 
 		text-decoration: none;
@@ -46,4 +46,9 @@
 			background-color: #ccc;
 		}
 	}
+}
+
+/* Single Post */
+.post-content {
+	@include clearfix;
 }

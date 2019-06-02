@@ -1,29 +1,56 @@
+.site-header {
+	width: 100%;
+	background-color: $white;
+	box-shadow: 3px 0 10px rgba(0,0,0,.25);
+	position: fixed;
+	z-index: 5;
+	padding: $spacer 0;
+	.container {
+		display: flex;
+		align-items: center;
+	}
+	.logo {
+		a { text-decoration: none; }
+	}
+}
 .top-bar {
 	position: fixed;
 	z-index: 11;
-	left: 1em;
+	right: 1em;
+	@include breakpoint(md) { display: none; }
 }
 .logged-in.admin-bar {
 	.main-navigation { top: 32px; }	
 }
 
 .main-navigation {
-	width: 100%;
-	padding: 0;
 	position: fixed;
-	background-color: #fff;
-	box-shadow: 3px 0 10px rgba(0,0,0,.25);
+	left: 0;
 	top: 0;
-	transform: translate( 0, -50px );
-	transition: .15s transform $ease-default;
-	z-index: 10;
-	text-align: right;
+	width: 100vw;
+	height: 100vh;
+	background-color: $white;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity .5s $ease-default,
+							visibility .51s linear;
 	&.is-open {
-		transform: translate( 0, 0 );
+		opacity: 1;
+		visibility: visible;
+		transition: opacity .5s $ease-default,
+								visibility .0s linear;
+	}
+	&>div {
+		height: 100%;
 	}
 	.menu {
-		max-width: 1200px;
+		height: 100%;
 		padding: 0 $spacer;
+		padding-top: 40px;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		justify-content: center;
 	}
 	li {
 		margin-right: $spacer;
@@ -35,13 +62,33 @@
 		}
 		&:last-of-type { margin-right: 0; }
 	}
-	ul.children {
-		background-color: #fff;
+	.sub-menu {
+		background-color: $white;
 		padding: 1em;
 		li {
 			line-height: 1.2;
 			padding: 10px 0;
 			margin-right: 0;
+		}
+	}
+	@include breakpoint( md ) {
+		flex: 1 0;
+		padding: 0;
+		top: 0;
+		transition: .15s transform $ease-default;
+		z-index: 10;
+		text-align: right;
+		visibility: visible;
+		opacity: 1;
+		height: auto;
+		width: auto;
+		position: static;
+		.menu {
+			height: auto;
+			padding-top: 0;
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-end;
 		}
 	}
 }

@@ -14,68 +14,13 @@
 	}
 }
 
-@mixin GridBase() {
-	display: flex;
-	flex-wrap: wrap;
-	list-style: none;
-	padding: 0;
-}
-
-@mixin Grid( $breakpoint: none, $value: none, $child: Col, $gutters: false ) {
-
-	@if $gutters == true {
-		margin: 0 0 0 (-$grid);
-		&>#{$child} { padding: 0 0 0 $grid; }
-	}
-
-	@if $breakpoint == none {
-		display: flex;
-		flex-wrap: wrap;
-		list-style: none;
-		padding: 0;
-		@if $value == none {
-			&>#{$child} { flex: 1; }
-		}
-		@if $value != none {
-			&>#{$child} { 
-				flex: 0 0 (100%/$value);
-				max-width: (100%/$value);
-			}
-		} 
-	}
-
-	@if $breakpoint != none {
-		@include breakpoint($breakpoint) {
-			@if $value == none {
-				&>#{$child} { flex: 1; }
-			}
-			@if $value != none {
-				&>#{$child} {
-					flex: 0 0 (100%/$value);
-					max-width: (100%/$value);
-				}
-			}
-		}
-	}
-}
-
-@mixin Grid-item( $breakpoint: none, $value: none ) {
-	@if $breakpoint != none {
-		@include respond-to($breakpoint) {
-			@if $value != none {
-				width: calc(#{$col} * #{$value});
-				max-width: initial;
-				flex: 0 0 calc(#{$col} * #{$value});
-			}
-		}
-	}
-	@if $breakpoint == none {
-		@if $value != none {
-			width: calc(#{$col} * #{$value});
-			max-width: initial;
-			flex: 0 0 calc(#{$col} * #{$value});
-		}
-	}
+// Mixin itself
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
 }
 
 @mixin object-fit($fit: fill, $position: null){

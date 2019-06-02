@@ -3,29 +3,28 @@
 }
 
 body {
-	background-color: #eaeaea;
+	background-color: $light;
 	font-family: $body-font;
 	font-size: 1rem;
 	font-weight: $regular;
 	line-height: 1.2;
 }
 
-main {
-	max-width: 1200px;
+.site-body {
 	margin: 0 auto;
-	background-color: #fff;
-	padding: $spacer;
+	background-color: $white;
+	padding-top: $spacer*5;
 }
 
 section {
-	width: 100%;
-	padding: 50px 0;
+	padding: $spacer 0;
+	@include breakpoint(md) { padding: $spacer*2 0; }
 }
 
 h1, h2, h3, h4, h5, h6, p, ul, ol, dl {
 	margin: 0 0 $spacer;
 	.reverse & {
-		color: #fff;
+		color: $white;
 	}
 }
 
@@ -48,7 +47,27 @@ h6 { font-size: .6875rem; } // 11px
 .h5 { @extend h5; }
 .h6 { @extend h6; }
 
-ul { margin-left: 0; }
+h1.huge { font-size: 10rem; } // as used on 404 page
+
+ul { 
+	margin-left: 0;
+	padding: 0;
+	list-style: none;
+	.entry-content &,
+	.post-content & {
+		padding-left: $spacer * 1.5;
+		list-style: disc;
+	} 
+}
+
+li {
+	margin: 0;
+	padding: 0;
+	.entry-content &,
+	.post-content & {
+		margin-bottom: $spacer;
+	}
+}
 
 strong { font-weight: $bold; }
 

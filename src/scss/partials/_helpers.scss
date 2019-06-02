@@ -40,3 +40,33 @@
 		&:after { content: 'xxl'; }
 	}
 }
+
+// hide
+
+.hide { display: none !important; }
+
+.hide-sm-up { @include breakpoint(sm) { display: none !important; } }
+.hide-md-up { @include breakpoint(md) { display: none !important; } }
+.hide-lg-up { @include breakpoint(lg) { display: none !important; } }
+.hide-xl-up { @include breakpoint(xl) { display: none !important; } }
+.hide-xxl-up { @include breakpoint(xxl) { display: none !important; } }
+
+.hide-sm-down { @include breakpoint(sm-max) { display: none !important; } }
+.hide-md-down { @include breakpoint(md-max) { display: none !important; } }
+.hide-lg-down { @include breakpoint(lg-max) { display: none !important; } }
+.hide-xl-down { @include breakpoint(xl-max) { display: none !important; } }
+.hide-xxl-down { @include breakpoint(xxl-max) { display: none !important; } }
+
+
+// text alignment
+
+.text-center,
+.text-centre { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+
+// text transform
+
+.text-lowercase { text-transform: lowercase; }
+.text-uppercase { text-transform: uppercase; }

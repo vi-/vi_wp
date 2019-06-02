@@ -25,11 +25,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	.post-extract {
-		padding: 15px $gutter;
-		@include respond-to(small) {
+		padding: 15px $spacer;
+		@include breakpoint(sm) {
 			width: 50%;
 		}
-		@include respond-to(large) {
+		@include breakpoint(lg) {
 			width: 33.3%;
 		}
 	}
@@ -37,7 +37,7 @@
 		text-decoration: none;
 		color: initial; 
 	}
-	.header { color: $main_copy; }
+	.header { color: $body-color; }
 	.categories {
 		a {
 			text-decoration: none;

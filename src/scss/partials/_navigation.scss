@@ -15,7 +15,7 @@
 	box-shadow: 3px 0 10px rgba(0,0,0,.25);
 	top: 0;
 	transform: translate( 0, -50px );
-	transition: .15s transform $default_easing;
+	transition: .15s transform $ease-default;
 	z-index: 10;
 	text-align: right;
 	&.is-open {
@@ -23,10 +23,10 @@
 	}
 	.menu {
 		max-width: 1200px;
-		padding: 0 $gutter;
+		padding: 0 $spacer;
 	}
 	li {
-		margin-right: $gutter;
+		margin-right: $spacer;
 		line-height: 3em;
 		float: none;
 		display: inline-block;
@@ -76,7 +76,7 @@
 	height: 16px;
 	display: inline-block;
 	position: relative;
-	@include respond-to(small) {
+	@include breakpoint(sm) {
 		width: 30px;
 		height: 14px;
 	}
@@ -95,7 +95,7 @@
 		transition-property: transform;
 		transition-duration: 0.15s;
 		transition-timing-function: ease;
-		@include respond-to(small) {
+		@include breakpoint(sm) {
 			width: 30px;
 			height: 3px;
 		} 
@@ -105,13 +105,13 @@
 		display: block; }
 	.hamburger-inner::before {
 		top: -8px;
-		@include respond-to(small) {
+		@include breakpoint(sm) {
 			top: -10px;
 		}
 	}
 	.hamburger-inner::after {
 		bottom: -8px;
-		@include respond-to(small) {
+		@include breakpoint(sm) {
 			bottom: -10px;
 		} 
 	}
@@ -134,14 +134,14 @@
 	.hamburger--3dx.is-active .hamburger-inner::before {
 		transform: translate3d(0, 10px, 0) rotate(45deg); 
 		
-		@include respond-to(small) {
+		@include breakpoint(sm) {
 			transform: translate3d(0, 10px, 0) rotate(45deg);
 		}
 	}
 	.hamburger--3dx.is-active .hamburger-inner::after {
 		transform: translate3d(0, -7px, 0) rotate(-45deg);
 		
-		@include respond-to(small) {
+		@include breakpoint(sm) {
 			transform: translate3d(0, -10px, 0) rotate(-45deg);
 		} 
 	}

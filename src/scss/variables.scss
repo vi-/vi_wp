@@ -1,0 +1,40 @@
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+	xl: 1200px,
+	xxl: 1440px
+);
+
+/* Colours */
+
+$black:						#000000;
+$dark: 						#4A4A4A;
+$mid:							#9b9b9b;
+
+$body-color:		 	#1a1a1a;
+$link-color: 			#5eabed;
+
+/* Spacing */
+
+$spacer: 							1rem;
+$grid:						 1.25rem; // 20px, this is grid gutter value
+$grid-md: 				1.875rem; // 30px
+$grid-max-width: 		 75rem; // 1200px
+
+/* Fonts */
+
+$body-font: 		'Work Sans', Helvetica Neueu, Helvetica, Arial, sans-serif;
+$headings-font: Georgia, serif;
+
+$lead-font-size:  1.25rem;
+$small-font-size: 	.75em;
+
+$regular: 400;
+$medium: 	500;
+$bold:		600;
+
+/* Animation */
+
+$ease-elastic : cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$ease-default : cubic-bezier(.25, .01, .25, 1);

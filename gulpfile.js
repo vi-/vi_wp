@@ -16,13 +16,13 @@ const	uglify				= require('gulp-uglify'),
 
 const serveSite = ( cb ) => {
 	browserSync.init({
-		proxy: "starter.test"
+		proxy: "wpstarter.test"
 	});
 	watchFiles();
 }
 
 const compileCSS = () => {
-	return src( 'src/scss/*.scss' )
+	return src(['src/scss/style.scss', 'src/scss/editor.scss' ] )
 		.pipe( maps.init() )
 		.pipe( sass().on( 'error', function(err) {
 			console.error( err.message );

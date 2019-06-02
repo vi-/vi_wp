@@ -3,7 +3,7 @@
 	position: fixed;
 	bottom: 30px;
 	right: 0;
-	width: 100px;
+	width: 40px;
 	height: auto;
 	background-color: #E3E930;
 	z-index: 99;
@@ -19,20 +19,24 @@
 		text-align: center;
 		display: block;
 	}
-	@include respond-to(small) {
+	@include breakpoint(sm) {
 		background-color: #007bff;
-		&:after { content: 'small'; }
+		&:after { content: 'sm'; }
 	}
-	@include respond-to(medium) {
+	@include breakpoint(md) {
 		background-color: #91E8BD;
-		&:after { content: 'medium'; }
+		&:after { content: 'md'; }
 	}
-	@include respond-to(large) {
+	@include breakpoint(lg) {
 		background-color: #F5C071;
-		&:after { content: 'large'; }
+		&:after { content: 'lg'; }
 	}
-	@include respond-to(xl) {
+	@include breakpoint(xl) {
 		background-color: gold;
 		&:after { content: 'xl'; }
+	}
+	@include breakpoint(xxl) {
+		background-color: #fa0000;
+		&:after { content: 'xxl'; }
 	}
 }

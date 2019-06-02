@@ -1,85 +1,12 @@
-/* --------------------------------------------------
-1.0 SASS Imports
-    - reset
-    - dependencies (comes with default _s theme styles)
-    - dev utils
-    - variables
-    - mixins
-    - partials
--------------------------------------------------- */
-
-@import "libs/reset";
+@import "variables";
+@import "mixins";
 @import "libs/underscores";
-@import "variables/variables";
-@import "mixins/mixins";
+@import "partials/helpers";
 
-@import "partials/type";
+@import "partials/base";
 @import "partials/navigation";
 @import "partials/blocks.scss";
 
-@import "partials/helpers";
-
-*, *:after, *:before {
-  @include box-sizing(border-box);
-}
-
-body {
-	background-color: #eaeaea;
-	font-family: $work_sans;
-}
-
-main {
-	max-width: 1200px;
-	margin: 0 auto;
-	background-color: #fff;
-	padding: $gutter;
-}
-
-section {
-	width: 100%;
-	padding: 50px 0;
-}
-
-ul { margin-left: 0; }
-
-.video_hero {
-	width: 100%;
-	height: 600px;
-	position: relative;
-}
-
-footer {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 1em 0;
-	.contents {
-		@include Grid( none, 1, '.box', true );
-		@include Grid( 'small', 2, '.box', true );
-		.social {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: flex-end;
-			li {
-				list-style: none;
-				margin-right: 2em;
-				a {
-					display: flex;
-					flex-direction: row;
-					flex-wrap: wrap;
-					align-items: center;
-					justify-content: flex-end;
-					text-decoration: none;
-					svg {
-						width: 24px;
-						path { fill: #1a1a1a; }
-					}
-					span { margin-left: .5em; }
-				}
-			}
-		}
-	}
-}
-
-@import "partials/blog_and_post";
+@import "partials/front-page";
+@import "partials/blog-and-post";
+@import "partials/footer";

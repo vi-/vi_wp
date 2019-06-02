@@ -24,8 +24,8 @@
 @mixin Grid( $breakpoint: none, $value: none, $child: Col, $gutters: false ) {
 
 	@if $gutters == true {
-		margin: 0 0 0 (-$gutter);
-		&>#{$child} { padding: 0 0 0 $gutter; }
+		margin: 0 0 0 (-$grid);
+		&>#{$child} { padding: 0 0 0 $grid; }
 	}
 
 	@if $breakpoint == none {
@@ -45,7 +45,7 @@
 	}
 
 	@if $breakpoint != none {
-		@include respond-to($breakpoint) {
+		@include breakpoint($breakpoint) {
 			@if $value == none {
 				&>#{$child} { flex: 1; }
 			}
@@ -99,32 +99,15 @@
 	}
 }
 
-/* --------------------------------------------------
-RESPONSIVE DESIGN MIXIN
--------------------------------------------------- */
+/* RESPONSIVE */
 
-$breakpoints: (
-	'small'  : $sm_bp,
-	'medium' : $med_bp,
-	'large'  : $lg_bp,
-	'xl'     : $xl_bp,
-);
-
-/* WIDTH MEDIA QUERIES */
-
-@mixin respond-to($breakpoint) {
-	$value: map-get($breakpoints, $breakpoint);
-	// If the key exists in the map
-	@if $value != null {
-		// Prints a media query based on the value
-		@media (min-width: $value) {
-			@content;
-		}
-	}
-
-	// If the key doesn't exist in the map
-	@else {
-		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-				+ "Please make sure it is defined in `$breakpoints` map.";
-	}
+@mixin breakpoint($breakpoint) {
+  @each $bp, $w in $breakpoints {
+    @if str-index($breakpoint, max) and $bp == str-slice($breakpoint, 1, 2) {
+      @media screen and (max-width: #{$w - 1}) { @content; }
+    }
+    @else if $bp == $breakpoint {
+      @media screen and (min-width: $w) { @content; }
+    }
+  }
 }

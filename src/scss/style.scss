@@ -3,11 +3,16 @@
 @import "libs/underscores";
 @import "partials/helpers";
 
+// If using flickity, uncomment
+// Also uncomment require in myscript.js
+// @import "libs/flickity";
+
+
 @import "partials/base";
 @import "partials/grid";
 @import "partials/navigation";
 @import "partials/forms";
-@import "partials/blocks.scss";
+@import "partials/components";
 
 @import "partials/front-page";
 @import "partials/blog-and-post";

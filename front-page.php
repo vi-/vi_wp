@@ -8,6 +8,40 @@
 		get_template_part( 'template-parts/blocks/_flex_video' );
 	?>
 </section>
+<section class="component-slider md-up-container">
+		<div class="standard-slider md-up-row">
+			<div class="slide">
+				<div class="img-wrap">
+					<img src="https://picsum.photos/id/10/500/400" alt="">
+				</div>
+				<div class="slide-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio debitis consequatur voluptatum?</div>
+			</div>
+			<div class="slide">
+				<div class="img-wrap">
+					<img src="https://picsum.photos/id/20/500/400" alt="">
+				</div>
+				<div class="slide-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio debitis consequatur voluptatum?</div>
+			</div>
+			<div class="slide">
+				<div class="img-wrap">
+					<img src="https://picsum.photos/id/30/500/400" alt="">
+				</div>
+				<div class="slide-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio debitis consequatur voluptatum?</div>
+			</div>
+			<div class="slide">
+				<div class="img-wrap">
+					<img src="https://picsum.photos/id/40/500/400" alt="">
+				</div>
+				<div class="slide-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio debitis consequatur voluptatum?</div>
+			</div>
+			<div class="slide">
+				<div class="img-wrap">
+					<img src="https://picsum.photos/id/50/500/400" alt="">
+				</div>
+				<div class="slide-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio debitis consequatur voluptatum?</div>
+			</div>
+		</div>
+</section>
 <section class="columns">
 	<div class="container">
 		<div class="row">

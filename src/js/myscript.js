@@ -1,22 +1,18 @@
-/* ============================== 
-	 Plugins / Polyfills
-	 ============================== */
-
-// Object-fit polyfill
+// External Plugins & Polyfills
 const objectFitImages = require('object-fit-images');
 
-/* ============================== 
-	 My modules / components
-	 ============================== */ 
+// If using flickity, uncomment the requires
+// const Flickity = require('flickity');
+// require('flickity-imagesloaded');
 
-// Navigation
-const nav 	= require("./modules/navigation.js"),
-			gmaps = require("./modules/gmaps.js");
+// My Components
+const nav 	= require("./components/navigation.js"),
+			gmaps = require("./components/gmaps.js");
 
-/* ============================== 
+
+/* ============================================================
 	 Execution code
-	 ============================== */ 
-
+	 ============================================================ */
 
 // Google MAP
 const mapEl = document.getElementById("map");
@@ -46,7 +42,16 @@ objectFitImages();
 const burger = document.querySelector('.nav-trigger');
 burger.addEventListener( 'click', (e) => nav.toggleResponsiveMenu() );
 
-let arr = ['hello', 'borat'];
-let arr2 = ['cheese', 'stuff', ...arr];
-console.log( `Le array good sir is ${arr2.length} long` );
-console.log( Array.from("BORAT!!!") );
+const std_sliders = [...document.querySelectorAll('.standard-slider')];
+
+if ( std_sliders ) {
+	std_sliders.forEach( ( s ) => {
+		const slider = new Flickity( s, {
+			cellAlign: 'left',
+			wrapAround: true,
+			imagesLoaded: true,
+			watchCSS: true,
+			contain: true
+		});
+	});
+}

@@ -42,6 +42,7 @@ objectFitImages();
 const burger = document.querySelector('.nav-trigger');
 burger.addEventListener( 'click', (e) => nav.toggleResponsiveMenu() );
 
+/*
 const std_sliders = [...document.querySelectorAll('.standard-slider')];
 
 if ( std_sliders ) {
@@ -55,3 +56,4 @@ if ( std_sliders ) {
 		});
 	});
 }
+*/

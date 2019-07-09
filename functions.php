@@ -55,10 +55,10 @@ function vi_starter_scripts() {
 	wp_deregister_script( 'wp-embed' );
 
 	// Makes available to JS
-	$translation_array = array( 
-			'templateUrl' => get_stylesheet_directory_uri() 
+	$WordPress_JS_Object = array( 
+			'templateUrl' 	=> get_stylesheet_directory_uri() // For images etc...
 		);
-	wp_localize_script( 'main_script', 'WP', $translation_array );
+	wp_localize_script( 'main_script', 'WP', $WordPress_JS_Object );
 }
 add_action( 'wp_enqueue_scripts', 'vi_starter_scripts' );
 

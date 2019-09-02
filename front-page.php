@@ -58,6 +58,6 @@
 	</div>
 </section>
 <section class="map">
-	<div id="map" class="gmap"></div>
+	<div id="map" class="gmap" data-lat="" data-lng=""></div>
 </section>
 <?php get_footer(); ?>

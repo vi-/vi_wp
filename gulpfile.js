@@ -4,22 +4,98 @@ const { series, parallel, src, dest, watch } = require( 'gulp' );
 
 const	uglify				= require('gulp-uglify'),
 			sass					= require('gulp-sass'),
-			maps					= require('gulp-sourcemaps'),
 			postcss 			= require('gulp-postcss'),
+			rename 				= require('gulp-rename'),
 			autoprefixer 	= require('autoprefixer'),
-			babelify			= require('babelify'),
 			cssnano				= require('cssnano'),
 			atImport 			= require('postcss-import'),
 			browserSync		= require('browser-sync').create(),
 			imagemin			= require('gulp-imagemin'),
-			browserify		= require('browserify'),
+			rollup 				= require('rollup'),
+			resolve 			= require('rollup-plugin-node-resolve'),
+			commonjs 			= require('rollup-plugin-commonjs'),
+			babel 				= require('rollup-plugin-babel'),
 			source				= require('vinyl-source-stream'),
-			buffer				= require('vinyl-buffer');
+			buffer				= require('vinyl-buffer'),
+			maps					= require('gulp-sourcemaps');
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+const paths = {
+	base: './src/',
+	dest: './',
+	scripts: {
+		src: './src/js/**/*.js',
+		dest: './js/',
+		entry: './src/js/myscript.js',
+		exit: './js/script.js'
+	}
+}
+
+const config = {
+	rollup: {
+		bundle: {
+			input: paths.scripts.entry,
+			plugins: [
+				resolve( {
+					jsnext: true,
+					main: true,
+					browser: true,
+				} ),
+				commonjs(),
+				babel( {
+					exclude: 'node_modules/**',
+				} ),
+			],
+		},
+		write: {
+			file: paths.scripts.exit,
+			format: 'iife',
+			globals: {
+				jquery: 'jQuery',
+			},
+			sourcemap: isProduction ? true : 'inline',
+		},
+	}
+}
+
+// const runRollup = () => {
+// 	return rollup({
+// 		input: './src/js/myscript.js',
+// 		sourcemap: true,
+// 		format: 'iife',
+// 		plugins: [
+// 			resolve({ mainFields: ['module', 'main'] }),
+// 			commonjs({
+// 				include: 'node_modules/**'
+// 			}),
+// 			babel({
+// 				presets: ["@babel/preset-env"],
+//         exclude: 'node_modules/**'
+// 			})
+// 		]
+// 	}).on( 'error', ( err ) => console.log( err.message ))
+// 	.pipe( source( 'myscript.js', './src/js' ) )
+// 	.pipe( buffer() )
+// 	.pipe( maps.init( { loadMaps: true } ) )
+// 	.pipe( rename( 'script.js' ) )
+// 	.pipe( maps.write( '.' ) )
+// 	.pipe( dest( './js' ) );
+// 	console.log( 'rollup ran...' )
+// }
+
+async function compileJS() {
+	// runRollup();
+	// done();
+	const bundle = await rollup.rollup( config.rollup.bundle );
+	await bundle.write( config.rollup.write );
+}
 
 const serveSite = ( cb ) => {
 	browserSync.init({
 		proxy: "wpstarter.test"
 	});
+	minifyImages();
 	watchFiles();
 }
 
@@ -45,20 +121,6 @@ const minifyCSS = () => {
 	return src( 'css/*.css' )
 		.pipe(cssnano())
 		.pipe(dest( 'css' ));
-}
-
-const compileJS = () => {
-	const b = browserify({
-	  entries: './src/js/myscript.js',
-	  debug: true,
-	}).transform( 'babelify' )
-
-	return b.bundle()
-	  .pipe(source( 'script.js' ))
-	  .pipe(buffer())
-	  .pipe(maps.init({ loadMaps: true }))
-	  .pipe(maps.write( './' ))
-	  .pipe(dest( './js/' ));
 }
 
 const minifyJS = () => {

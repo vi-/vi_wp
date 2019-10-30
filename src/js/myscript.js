@@ -44,8 +44,3 @@ if ( std_sliders ) {
 		});
 	});
 }
-
-
-const a = ['dope', 'fun', 'totes'];
-let cool = [ ...a, 'sweet', 'choice', 'poo', 'pee' ];
-console.log( cool );

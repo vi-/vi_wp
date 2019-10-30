@@ -2,10 +2,8 @@
 
 const { series, parallel, src, dest, watch } = require( 'gulp' );
 
-const	uglify				= require('gulp-uglify'),
-			sass					= require('gulp-sass'),
+const	sass					= require('gulp-sass'),
 			postcss 			= require('gulp-postcss'),
-			rename 				= require('gulp-rename'),
 			autoprefixer 	= require('autoprefixer'),
 			cssnano				= require('cssnano'),
 			atImport 			= require('postcss-import'),
@@ -15,20 +13,28 @@ const	uglify				= require('gulp-uglify'),
 			resolve 			= require('rollup-plugin-node-resolve'),
 			commonjs 			= require('rollup-plugin-commonjs'),
 			babel 				= require('rollup-plugin-babel'),
+			uglify				= require('rollup-plugin-uglify'),
 			source				= require('vinyl-source-stream'),
 			buffer				= require('vinyl-buffer'),
 			maps					= require('gulp-sourcemaps');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const basePaths = {
+	src: './src/',
+	dest: './'
+}
 const paths = {
-	base: './src/',
-	dest: './',
 	scripts: {
-		src: './src/js/**/*.js',
-		dest: './js/',
-		entry: './src/js/myscript.js',
-		exit: './js/script.js'
+		src: 		`${basePaths.src}js/**/*.js`,
+		dest: 	`${basePaths.dest}js/`,
+		entry: 	`${basePaths.src}js/myscript.js`,
+		exit: 	`${basePaths.dest}js/script.js`
+	},
+	styles: {
+		entry: 	`${basePaths.src}scss/style.scss`,
+		editor: `${basePaths.src}scss/editor.scss`,
+		dest: 	`${basePaths.dest}css/`
 	}
 }
 
@@ -38,9 +44,7 @@ const config = {
 			input: paths.scripts.entry,
 			plugins: [
 				resolve( {
-					jsnext: true,
-					main: true,
-					browser: true,
+					mainFields: [ 'module', 'jsnext:main', 'main'  ]
 				} ),
 				commonjs(),
 				babel( {
@@ -59,34 +63,10 @@ const config = {
 	}
 }
 
-// const runRollup = () => {
-// 	return rollup({
-// 		input: './src/js/myscript.js',
-// 		sourcemap: true,
-// 		format: 'iife',
-// 		plugins: [
-// 			resolve({ mainFields: ['module', 'main'] }),
-// 			commonjs({
-// 				include: 'node_modules/**'
-// 			}),
-// 			babel({
-// 				presets: ["@babel/preset-env"],
-//         exclude: 'node_modules/**'
-// 			})
-// 		]
-// 	}).on( 'error', ( err ) => console.log( err.message ))
-// 	.pipe( source( 'myscript.js', './src/js' ) )
-// 	.pipe( buffer() )
-// 	.pipe( maps.init( { loadMaps: true } ) )
-// 	.pipe( rename( 'script.js' ) )
-// 	.pipe( maps.write( '.' ) )
-// 	.pipe( dest( './js' ) );
-// 	console.log( 'rollup ran...' )
-// }
+// Modify build process for Production
+if ( isProduction ) config.rollup.bundle.plugins.push( uglify.uglify() );
 
 async function compileJS() {
-	// runRollup();
-	// done();
 	const bundle = await rollup.rollup( config.rollup.bundle );
 	await bundle.write( config.rollup.write );
 }
@@ -100,7 +80,7 @@ const serveSite = ( cb ) => {
 }
 
 const compileCSS = () => {
-	return src(['src/scss/style.scss', 'src/scss/editor.scss' ] )
+	return src([ paths.styles.entry, paths.styles.editor ] )
 		.pipe( maps.init() )
 		.pipe( sass().on( 'error', function(err) {
 			console.error( err.message );
@@ -113,7 +93,7 @@ const compileCSS = () => {
       cssnano()
     ]))
 		.pipe(maps.write( './' ))
-		.pipe(dest( 'css' ))
+		.pipe(dest( paths.styles.dest ))
 		.pipe(browserSync.stream());
 }
 
@@ -121,12 +101,6 @@ const minifyCSS = () => {
 	return src( 'css/*.css' )
 		.pipe(cssnano())
 		.pipe(dest( 'css' ));
-}
-
-const minifyJS = () => {
-	return src( 'js/script.js' )
-		.pipe(uglify())
-		.pipe(dest('js'));
 }
 
 const minifyImages = () => {
@@ -147,16 +121,16 @@ const browserReload = ( done ) => {
 
 const watchFiles = () => {
 	watch( 'src/scss/**/*.scss', compileCSS );
-	watch( 'src/js/**/*.js', series( compileJS, minifyJS, browserReload ) );
+	watch( 'src/js/**/*.js', series( compileJS, browserReload ) );
 	watch( 'src/images/*', series( minifyImages, browserReload ) );
   watch( 'src/fonts/*', copyFonts );
   watch( '**/*.php', browserReload );
 	console.log( '👀 Watching files 👀' );
 }
 
-exports.default = series( parallel( compileCSS, compileJS ), minifyJS, serveSite );
+exports.default = series( parallel( compileCSS, compileJS ), serveSite );
 exports.build 	= series(
 	parallel( compileCSS, compileJS ), 
-	parallel( minifyCSS, minifyJS ),
+	parallel( minifyCSS ),
 	parallel( copyFonts, minifyImages )
 );

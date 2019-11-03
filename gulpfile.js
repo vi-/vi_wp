@@ -9,8 +9,9 @@ const	sass					= require('gulp-sass'),
 			atImport 			= require('postcss-import'),
 			browserSync		= require('browser-sync').create(),
 			imagemin			= require('gulp-imagemin'),
-			rollup 				= require('rollup'),
+			replace 			= require('gulp-replace'),
 			resolve 			= require('rollup-plugin-node-resolve'),
+			rollup 				= require('rollup'),
 			commonjs 			= require('rollup-plugin-commonjs'),
 			babel 				= require('rollup-plugin-babel'),
 			uglify				= require('rollup-plugin-uglify'),
@@ -94,12 +95,6 @@ const compileCSS = () => {
 		.pipe(browserSync.stream());
 }
 
-const minifyCSS = () => {
-	return src( 'css/*.css' )
-		.pipe(cssnano())
-		.pipe(dest( 'css' ));
-}
-
 const minifyImages = () => {
 	return src( `${basePaths.src}/images/*` )
 		.pipe(imagemin())
@@ -109,6 +104,14 @@ const minifyImages = () => {
 const copyFonts = () => {
 	return src( 'src/fonts/**' )
 		.pipe( dest( './fonts' ) );
+}
+
+const removeMediaQueryHelper = () => {
+	return src( ['header.php'] )
+		.pipe( replace( 
+			'<div class="resp-indicator"></div>', 
+			'<!--<div class="resp-indicator"></div>-->' ))
+		.pipe( dest( basePaths.dest ) );
 }
 
 const browserReload = ( done ) => {
@@ -127,7 +130,6 @@ const watchFiles = () => {
 
 exports.default = series( parallel( compileCSS, compileJS, minifyImages ), serveSite );
 exports.build 	= series(
-	parallel( compileCSS, compileJS ), 
-	parallel( minifyCSS ),
+	parallel( compileCSS, compileJS, removeMediaQueryHelper ), 
 	parallel( copyFonts, minifyImages )
 );

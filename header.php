@@ -10,7 +10,7 @@
 
 <body <?php body_class(); ?>>
 	<!-- Responsive breakpoint helper -->
-	<div class="resp-indicator"></div>
+	<!--<div class="resp-indicator"></div>-->
 	<!-- // Responsive breakpoint helper -->
 	<header class="site-header">
 		<div class="container">

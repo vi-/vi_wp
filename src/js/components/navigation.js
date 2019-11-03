@@ -5,7 +5,7 @@ const toggleResponsiveMenu = () => {
 	} else {
 		floatingNav.openNav();
 	}
-	console.log('toggling nav now...');
+	console.log('toggling nav now... boom!');
 }
 
 const floatingNav = {
@@ -27,4 +27,7 @@ const floatingNav = {
 	}
 }
 
-export { toggleResponsiveMenu, floatingNav }
+module.exports = { 
+	toggleResponsiveMenu, 
+	floatingNav 
+}

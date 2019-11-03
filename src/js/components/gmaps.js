@@ -94,4 +94,6 @@ const processMaps = function( mapsArray, options ) {
 	});
 }
 
-export default { setupGoogleMapsApi }
+module.exports = { 
+	setupGoogleMapsApi 
+}

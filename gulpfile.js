@@ -72,10 +72,7 @@ async function compileJS() {
 }
 
 const serveSite = ( cb ) => {
-	browserSync.init({
-		proxy: "wpstarter.test"
-	});
-	minifyImages();
+	browserSync.init({ proxy: "wpstarter.test" });
 	watchFiles();
 }
 
@@ -104,9 +101,9 @@ const minifyCSS = () => {
 }
 
 const minifyImages = () => {
-	return src( 'src/images/*' )
+	return src( `${basePaths.src}/images/*` )
 		.pipe(imagemin())
-		.pipe(dest( 'images/' ));
+		.pipe(dest( `${basePaths.dest}images/` ));
 }
 
 const copyFonts = () => {
@@ -128,7 +125,7 @@ const watchFiles = () => {
 	console.log( '👀 Watching files 👀' );
 }
 
-exports.default = series( parallel( compileCSS, compileJS ), serveSite );
+exports.default = series( parallel( compileCSS, compileJS, minifyImages ), serveSite );
 exports.build 	= series(
 	parallel( compileCSS, compileJS ), 
 	parallel( minifyCSS ),

@@ -1,33 +1,29 @@
+const burger = document.querySelector('.hamburger');
+
 const toggleResponsiveMenu = () => {
-	const burger = document.querySelector('.hamburger');
-	if (burger.classList.contains('is-active')) {
+  const IS_NAV_OPEN = document.body.classList.contains( 'nav-is-open' );
+	if ( IS_NAV_OPEN ) {
 		floatingNav.closeNav();
 	} else {
 		floatingNav.openNav();
 	}
-	console.log('toggling nav now... boom!');
 }
 
 const floatingNav = {
-	siteHeader 	: document.querySelector('.site-header'),
-	topBar 			: document.querySelector('.top-bar'),
-	burger 			: document.querySelector('.hamburger'),
-	nav 				: document.querySelector('.main-navigation'),
 
 	openNav : function() {
-		this.burger.classList.add('is-active');
-		this.nav.classList.add('is-open');
-		this.topBar.classList.add('is-active');
+    document.body.classList.add( 'nav-is-open' );
 	},
 
 	closeNav : function() {
-		this.burger.classList.remove('is-active');
-		this.nav.classList.remove('is-open');
-		this.topBar.classList.remove('is-active');
+    document.body.classList.remove( 'nav-is-open' );
 	}
 }
 
-module.exports = { 
-	toggleResponsiveMenu, 
-	floatingNav 
+const init = () => {
+  burger.addEventListener( 'click', () => toggleResponsiveMenu() );
 }
+
+export default {
+  init,
+};

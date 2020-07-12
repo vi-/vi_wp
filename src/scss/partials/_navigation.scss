@@ -34,7 +34,8 @@
 	opacity: 0;
 	transition: opacity .5s $ease-default,
 							visibility .51s linear;
-	&.is-open {
+	.nav-is-open & {
+    ul { display: block; }
 		opacity: 1;
 		visibility: visible;
 		transition: opacity .5s $ease-default,
@@ -176,20 +177,22 @@
 		transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1); 
 	}
 
-.hamburger--3dx.is-active .hamburger-inner {
-	background-color: transparent;
-	transform: rotateY(180deg); }
-	.hamburger--3dx.is-active .hamburger-inner::before {
-		transform: translate3d(0, 10px, 0) rotate(45deg); 
-		
-		@include breakpoint(sm) {
-			transform: translate3d(0, 10px, 0) rotate(45deg);
-		}
-	}
-	.hamburger--3dx.is-active .hamburger-inner::after {
-		transform: translate3d(0, -7px, 0) rotate(-45deg);
-		
-		@include breakpoint(sm) {
-			transform: translate3d(0, -10px, 0) rotate(-45deg);
-		} 
-	}
+.nav-is-open {
+  .hamburger--3dx .hamburger-inner {
+    background-color: transparent;
+    transform: rotateY(180deg); 
+  }
+  .hamburger--3dx .hamburger-inner::before {
+    transform: translate3d(0, 10px, 0) rotate(45deg); 
+    @include breakpoint(sm) {
+      transform: translate3d(0, 10px, 0) rotate(45deg);
+    }
+  }
+  .hamburger--3dx .hamburger-inner::after {
+    transform: translate3d(0, -7px, 0) rotate(-45deg);
+    
+    @include breakpoint(sm) {
+      transform: translate3d(0, -10px, 0) rotate(-45deg);
+    } 
+  }
+}

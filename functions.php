@@ -48,9 +48,9 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 // Enqueue scripts and styles.
 function vi_starter_scripts() {
 	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Work+Sans:400,500,700', false );
-	wp_enqueue_style( 'vi_starter-style', get_template_directory_uri() . '/css/style.css' );
+	wp_enqueue_style( 'vi_starter-style', get_template_directory_uri() . '/css/app.min.css' );
 
-	wp_enqueue_script( 'main_script', get_template_directory_uri() . '/js/script.js', array('jquery'), '', true );
+	wp_enqueue_script( 'main_script', get_template_directory_uri() . '/js/app.min.js', array('jquery'), '', true );
 	// Get Rid of Embed Script.
 	wp_deregister_script( 'wp-embed' );
 

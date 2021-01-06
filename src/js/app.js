@@ -5,9 +5,13 @@ import objectFitImages from 'object-fit-images';
 import Flickity from 'flickity';
 import 'flickity-imagesloaded';
 
+// Styles
+import '../styles/style.scss'
+
 // My Components
 import Nav from './components/navigation';
 import Maps from './components/gmaps';
+
 /* ============================================================
   Execution code
   ============================================================ */

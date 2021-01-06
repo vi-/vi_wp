@@ -73,7 +73,7 @@ async function compileJS() {
 }
 
 const serveSite = ( cb ) => {
-	browserSync.init({ proxy: "wp_starter.test" });
+	browserSync.init({ proxy: "wpstarter.test" });
 	watchFiles();
 }
 

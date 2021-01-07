@@ -2,10 +2,10 @@
 <section class="container">
 	<h1>Front-page, this is your home...</h1>
 </section>
-<?php get_template_part( 'template-parts/acf_flex' ); ?>
+<?php get_template_part( 'partials/acf_flex' ); ?>
 <section class="video-hero">
 	<?php 
-		get_template_part( 'template-parts/blocks/_flex_video' );
+		get_template_part( 'partials/blocks/_flex_video' );
 	?>
 </section>
 <section class="component-slider md-up-container">

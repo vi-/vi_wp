@@ -5,17 +5,21 @@ const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 const dest = {
-  img: '../../images',
-  js: '../../js',
-  css: '../../css',
+  img: '../../assets/images',
+  fonts: '../../assets/fonts',
+  js: '../../assets/js',
+  css: '../../assets/css',
   php: '../..',
 }
 
 module.exports = env => {
 
+  const mode = process.env.NODE_ENV
+
   return {
     entry: {
       app: './src/js/app.js',
+      editor: './src/js/editor.js',
     },
     output: {
       filename: `${dest.js}/[name].min.js`,
@@ -23,6 +27,8 @@ module.exports = env => {
     },
 
     devtool: 'source-map',
+
+    mode,
 
     module: {
       rules: [
@@ -53,6 +59,14 @@ module.exports = env => {
             name: `${dest.img}/[path][name].[ext]`,
           }
         },
+        {
+          test: /\.(woff2?)$/i,
+          loader: 'file-loader',
+          options: {
+            context: './src/fonts',
+            name: `${dest.fonts}/[path][name].[ext]`,
+          }
+        },
       ]
     },
 
@@ -76,11 +90,7 @@ module.exports = env => {
             [
               'svgo',
               {
-                plugins: [
-                  {
-                    removeViewBox: false,
-                  },
-                ],
+                plugins: [{ removeViewBox: false }],
               },
             ],
           ],

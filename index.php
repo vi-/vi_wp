@@ -13,7 +13,7 @@ if ( have_posts() ) :
 			<div class="row">
 				<?php 
 					while ( have_posts() ) : the_post();
-						get_template_part( 'template-parts/content', get_post_format() );
+						get_template_part( 'partials/content', get_post_format() );
 					endwhile;
 					the_posts_navigation(); 
 				?>
@@ -22,8 +22,7 @@ if ( have_posts() ) :
 	</div>
 	<?php 
 else :
-	get_template_part( 'template-parts/content', 'none' );
+	get_template_part( 'partials/content', 'none' );
 endif; 
 
-get_sidebar();
 get_footer();

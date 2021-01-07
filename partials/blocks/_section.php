@@ -1,6 +1,6 @@
 <?php 
 global $p_blocks;
-require_once( get_template_directory() . '/template-parts/acf_generic_fields.php' );
+require_once( get_template_directory() . '/partials/acf_generic_fields.php' );
 
 $content = get_sub_field( 'content' ); 
 

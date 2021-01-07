@@ -13,9 +13,9 @@
 				</div>
 				<div class="col-md-6">
 					<ul class="social">
-						<li><?php get_template_part('template-parts/svg/_facebook'); ?></li>
-						<li><?php get_template_part('template-parts/svg/_insta'); ?></li>
-						<li><?php get_template_part('template-parts/svg/_twitter'); ?></li>
+						<li><?php get_template_part('partials/svg/_facebook'); ?></li>
+						<li><?php get_template_part('partials/svg/_insta'); ?></li>
+						<li><?php get_template_part('partials/svg/_twitter'); ?></li>
 					</ul>
 				</div>
 			</div>

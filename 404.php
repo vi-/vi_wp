@@ -11,9 +11,9 @@
 	</section>
 	<section class="recent-links text-center">
 		<div class="container">
-			<?php get_template_part( 'template-parts/recent-posts-list'); ?>
+			<?php get_template_part( 'partials/recent-posts-list'); ?>
 		</div>
 	</section>
 <?php
-get_template_part( 'template-parts/pre-footer' );
+get_template_part( 'partials/pre-footer' );
 get_footer();

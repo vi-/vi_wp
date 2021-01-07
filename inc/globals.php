@@ -1,7 +1,7 @@
 <?php
 
-$p_blocks = 'template-parts/blocks';
-$p_svg = 'template-parts/svg';
+$p_blocks = 'partials/blocks';
+$p_svg = 'partials/svg';
 
 $colors = array(
   'transparent' => 'transparent',

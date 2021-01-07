@@ -1,7 +1,8 @@
 // imports for WebPack
 import '../styles/style.scss';
 require.context('../images', true);
-import './components/helpers';
+require.context('../fonts', true);
+import './components/development';
 
 // External Plugins & Polyfills
 import objectFitImages from 'object-fit-images';
@@ -23,7 +24,7 @@ Maps.setupGoogleMapsApi(['map'], {
   zoom: 18,
   icon: {
     /* global WP */
-    img: `${WP.templateUrl}/images/marker_alt.png`,
+    img: `${WP.templateUrl}/assets/images/marker_alt.png`,
   },
 });
 

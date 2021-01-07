@@ -25,7 +25,7 @@ get_header(); ?>
 						<?php
 						/* Start the Loop */
 						while ( have_posts() ) : the_post();
-							get_template_part( 'template-parts/content', get_post_format() );
+							get_template_part( 'partials/content', get_post_format() );
 						endwhile;
 						the_posts_navigation(); ?>
 					</div>
@@ -35,7 +35,7 @@ get_header(); ?>
 <?php
 		else :
 
-			get_template_part( 'template-parts/content', 'none' );
+			get_template_part( 'partials/content', 'none' );
 
 		endif; ?>
 
@@ -43,5 +43,4 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();

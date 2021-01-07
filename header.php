@@ -9,9 +9,6 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<!-- Responsive breakpoint helper -->
-	<!--<div class="resp-indicator"></div>-->
-	<!-- // Responsive breakpoint helper -->
 	<header class="site-header">
 		<div class="container">
 			<div class="logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">¯\_(ツ)_/¯</a></div>

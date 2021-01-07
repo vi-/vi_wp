@@ -28,7 +28,7 @@ const init = () => {
   burger.addEventListener( 'click', () => toggleResponsiveMenu() );
   let x = [ 'one', 'two', 'three' ]
   let y = [ 1, 2, 3 ]
-  console.log( [...x, ...y, 'pooooop'] )
+  console.log( [...x, ...y, 'scoop'] )
 }
 
 export default {

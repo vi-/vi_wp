@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "A modern WordPress workflow starter",
   "main": "index.js",
-  "repository": "git@github.com:vi-/vi_starter.git",
+  "repository": "git@github.com:vi-/vi_wp.git",
   "author": "vi- <reach.vctr@gmail.com>",
   "license": "MIT",
   "private": false,

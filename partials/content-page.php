@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package vi_starter
+ * @package vi_wp
  */
 
 ?>
@@ -19,7 +19,7 @@
 			the_content();
 
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'vi_starter' ),
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'vi_wp' ),
 				'after'  => '</div>',
 			) );
 		?>
@@ -32,7 +32,7 @@
 					sprintf(
 						wp_kses(
 							/* translators: %s: Name of current post. Only visible to screen readers */
-							__( 'Edit <span class="screen-reader-text">%s</span>', 'vi_starter' ),
+							__( 'Edit <span class="screen-reader-text">%s</span>', 'vi_wp' ),
 							array(
 								'span' => array(
 									'class' => array(),

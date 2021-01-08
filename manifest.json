@@ -1,0 +1,13 @@
+{
+  "name": "vi_wp",
+  "short_name": "vi_wp",
+  "icons": [
+    {
+      "src": "/assets/images/favi/google-touch-icon.png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#1D1E1F",
+  "theme_color": "#F5DF4D",
+  "display": "fullscreen"
+}

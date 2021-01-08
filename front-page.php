@@ -42,21 +42,6 @@
 			</div>
 		</div>
 </section>
-<section class="columns">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6 col-lg-4">
-				<p>This column will be 50% on small, and 33.3 on large</p>
-			</div>
-			<div class="col-sm-6 col-lg-4">
-				<p>This column will be 50% on small, and 33.3 on large</p>
-			</div>
-			<div class="col-sm-6 col-lg-4">
-				<p>This column will be 50% on small, and 33.3 on large</p>
-			</div>
-		</div>
-	</div>
-</section>
 <section class="map">
 	<div id="map" class="gmap" data-lat="" data-lng=""></div>
 </section>

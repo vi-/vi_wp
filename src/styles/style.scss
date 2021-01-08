@@ -1,10 +1,10 @@
 @import "variables";
 @import "mixins";
-@import "libs/underscores";
 @import "partials/helpers";
 
 // If using flickity, uncomment
 // Also uncomment require in myscript.js
+@import "libs/reset";
 @import "libs/flickity";
 
 

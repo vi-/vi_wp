@@ -2,11 +2,14 @@
 
 namespace vi_wp\Theme;
 
+require_once  __DIR__ . '/includes/globals.php';
+require_once  __DIR__ . '/includes/acf-options.php';
+require_once  __DIR__ . '/includes/acf-blocks.php';
 require_once  __DIR__ . '/includes/google-fonts.php';
 require_once  __DIR__ . '/includes/guten-colours.php';
 require_once  __DIR__ . '/includes/favicon-assets.php';
-require_once  __DIR__ . '/includes/globals.php';
 require_once  __DIR__ . '/includes/template-tags.php';
+
 
 add_action( 'after_setup_theme',  __NAMESPACE__ . '\\vi_wp_setup' );
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_assets' );
@@ -28,7 +31,6 @@ function vi_wp_setup() {
 
   add_image_size( 'hero', 2000, 0, true );
 }
-
 
 // Enqueue scripts and styles.
 function enqueue_assets() {

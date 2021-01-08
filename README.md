@@ -28,3 +28,4 @@ This is a starter WordPress theme, it's based on a very stripped-down **_s** the
 - gulp-babel
 - del
 - browser-sync
+

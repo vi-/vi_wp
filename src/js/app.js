@@ -1,20 +1,19 @@
 // imports for WebPack
 import '../styles/style.scss';
-require.context('../images', true);
-require.context('../fonts', true);
 import './components/development';
-
 // External Plugins & Polyfills
 import objectFitImages from 'object-fit-images';
-
 // If using flickity, uncomment the requires
 import Flickity from 'flickity';
 import 'flickity-imagesloaded';
-
 // My Components
 import Nav from './components/navigation';
 import Maps from './components/gmaps';
-import { snazzyMap } from './components/snazzymap';
+import snazzyMap from './components/snazzymap';
+
+require.context('../images', true);
+require.context('../fonts', true);
+
 /* ============================================================
   Execution code
   ============================================================ */

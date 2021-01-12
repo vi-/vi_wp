@@ -1,35 +1,32 @@
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-const burger = document.querySelector('.hamburger');
-const nav_target = document.querySelector('.main-navigation');
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
-const toggleResponsiveMenu = () => {
-  const IS_NAV_OPEN = document.body.classList.contains( 'nav-is-open' );
-	if ( IS_NAV_OPEN ) {
-		floatingNav.closeNav();
-	} else {
-		floatingNav.openNav();
-	}
-}
+const burger = document.querySelector('.hamburger');
+const navTarget = document.querySelector('.main-navigation');
 
 const floatingNav = {
+  openNav: function openNav() {
+    document.body.classList.add('nav-is-open');
+    disableBodyScroll(navTarget);
+  },
 
-	openNav : function() {
-    document.body.classList.add( 'nav-is-open' );
-    disableBodyScroll( nav_target );
-	},
+  closeNav: function closeNav() {
+    document.body.classList.remove('nav-is-open');
+    enableBodyScroll(navTarget);
+  },
+};
 
-	closeNav : function() {
-    document.body.classList.remove( 'nav-is-open' );
-    enableBodyScroll( nav_target );
-	}
-}
+const toggleResponsiveMenu = () => {
+  const IS_NAV_OPEN = document.body.classList.contains('nav-is-open');
+  if (IS_NAV_OPEN) {
+    floatingNav.closeNav();
+  } else {
+    floatingNav.openNav();
+  }
+};
 
 const init = () => {
-  burger.addEventListener( 'click', () => toggleResponsiveMenu() );
-  let x = [ 'one', 'two', 'three' ]
-  let y = [ 1, 2, 3 ]
-  console.log( [...x, ...y, 'scoop'] )
-}
+  burger.addEventListener('click', () => toggleResponsiveMenu());
+};
 
 export default {
   init,

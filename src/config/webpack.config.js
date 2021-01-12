@@ -1,8 +1,9 @@
-const path = require("path");
-const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
+const path = require('path');
+// const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const dest = {
   img: '../../assets/images',
@@ -10,11 +11,10 @@ const dest = {
   js: '../../assets/js',
   css: '../../assets/css',
   php: '../..',
-}
+};
 
-module.exports = env => {
-
-  const mode = process.env.NODE_ENV
+module.exports = () => {
+  const mode = process.env.NODE_ENV;
 
   return {
     entry: {
@@ -23,7 +23,7 @@ module.exports = env => {
     },
     output: {
       filename: `${dest.js}/[name].min.js`,
-      path: path.resolve(__dirname)
+      path: path.resolve(__dirname),
     },
 
     devtool: 'source-map',
@@ -38,9 +38,9 @@ module.exports = env => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
-            }
-          }
+              presets: ['@babel/preset-env'],
+            },
+          },
         },
         {
           test: /\.s[ac]ss$/i,
@@ -49,7 +49,7 @@ module.exports = env => {
             'css-loader',
             'postcss-loader',
             'sass-loader',
-          ]
+          ],
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/i,
@@ -57,7 +57,7 @@ module.exports = env => {
           options: {
             context: './src/images',
             name: `${dest.img}/[path][name].[ext]`,
-          }
+          },
         },
         {
           test: /\.(woff2?)$/i,
@@ -65,21 +65,21 @@ module.exports = env => {
           options: {
             context: './src/fonts',
             name: `${dest.fonts}/[path][name].[ext]`,
-          }
+          },
         },
-      ]
+      ],
     },
 
     plugins: [
       new MiniCssExtractPlugin({
-        filename: `${dest.css}/[name].min.css`
+        filename: `${dest.css}/[name].min.css`,
       }),
       new BrowserSyncPlugin({
         host: 'localhost',
         port: 3000,
         proxy: 'http://wpstarter.test',
         injectCss: true,
-        files: [ '**/*.php' ],
+        files: ['**/*.php'],
       }),
       new ImageMinimizerPlugin({
         minimizerOptions: {
@@ -96,6 +96,7 @@ module.exports = env => {
           ],
         },
       }),
+      new ESLintPlugin(),
     ],
-  }
-}
+  };
+};

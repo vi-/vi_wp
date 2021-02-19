@@ -98,5 +98,8 @@ module.exports = () => {
       }),
       new ESLintPlugin(),
     ],
+    externals: {
+      jquery: 'jQuery',
+    },
   };
 };

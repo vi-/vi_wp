@@ -11,5 +11,10 @@
         "sourceType": "module"
     },
     "rules": {
-    }
+    },
+    "settings": {
+		"import/core-modules": [
+			"jquery"
+		]
+	},
 }

@@ -23,6 +23,17 @@
   }
 }
 
+@mixin visually-hidden() {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
 @mixin object-fit($fit: fill, $position: null){
 	-o-object-fit: $fit;
 		 object-fit: $fit;

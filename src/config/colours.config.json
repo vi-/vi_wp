@@ -1,0 +1,18 @@
+{
+  "ocean": {
+    "hex": "#021BF8"
+  },
+  "blackhole": {
+    "hex": "#000000"
+  },
+  "saefoam": {
+    "hex": "#35F4E3"
+  },
+  "red": {
+    "hex": "#FA0000",
+    "sassOnly": true
+  },
+  "snow": {
+    "hex": "#FFFFFF"
+  }
+}

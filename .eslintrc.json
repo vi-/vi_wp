@@ -1,20 +1,24 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "airbnb-base"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "rules": {
-    },
-    "settings": {
-		"import/core-modules": [
-			"jquery"
-		]
-	}
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb-base"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "space-in-parens": [
+      "warn",
+      "always"
+    ]
+  },
+  "settings": {
+    "import/core-modules": [
+      "jquery"
+    ]
+  }
 }

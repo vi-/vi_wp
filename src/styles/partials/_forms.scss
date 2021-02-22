@@ -42,14 +42,14 @@
 			width: 100%;
 			font-family: $body-font;
 			border-radius: 0;
-			border: 1px solid darken($light, 10);
+			border: 1px solid currentColor;
 			padding: $grid/2;
 			&:hover {
-				border: 1px solid $body-color;
+				border: 1px solid #777777;
 			}
 			&:focus {
 				outline: none;
-				border: 1px solid $body-color;
+				border: 1px solid #777777;
 			}
 			&::placeholder { 
 				color: currentColor; 
@@ -64,11 +64,11 @@
 				align-items: center;
 			}
 			&:hover {
-				border: 1px solid $body-color;
+				border: 1px solid #777777;
 			}
 			&:focus {
 				outline: none;
-				border: 1px solid $body-color;
+				border: 1px solid #777777;
 			}
 		}
 		textarea { 
@@ -112,15 +112,15 @@
 	}
 
 	input[type="submit"].gform_button{
-		border: 2px solid $dark;
+		border: 2px solid #777777;
 		background:transparent;
-		color: $dark;
+		color: #777777;
 		font-size: 1rem;
 		width: auto;
 		padding: .95rem 5rem .95rem 5rem;
 		&:hover {
 			cursor: pointer;
-			background-color: $dark;
+			background-color: #777777;
 			color: #fff;
 		}
 	}
@@ -155,10 +155,10 @@
 
 // Datepicker
 .ui-datepicker {
-	background-color: $white;
+	background-color: #ffffff;
 	padding: $spacer;
 	margin-top: -1px;
-	border: 1px solid darken($light, 10);
+	border: 1px solid #777777;
 	width: 250px;
 	.ui-datepicker-calendar {
 		margin-bottom: 0;

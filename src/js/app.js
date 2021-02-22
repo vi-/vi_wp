@@ -1,6 +1,6 @@
 // imports for WebPack
 import '../styles/style.scss';
-import './components/development';
+import './dev/helpers';
 // External Plugins & Polyfills
 import objectFitImages from 'object-fit-images';
 // If using flickity, uncomment the requires
@@ -11,37 +11,37 @@ import Nav from './components/navigation';
 import Maps from './components/gmaps';
 import snazzyMap from './components/snazzymap';
 
-require.context('../images', true);
-require.context('../fonts', true);
+require.context( '../images', true );
+require.context( '../fonts', true );
 
 /* ============================================================
   Execution code
   ============================================================ */
 
-Maps.setupGoogleMapsApi(['map'], {
+Maps.setupGoogleMapsApi( ['map'], {
   style: snazzyMap,
   zoom: 18,
   icon: {
     /* global WP */
     img: `${WP.templateUrl}/assets/images/marker_alt.png`,
   },
-});
+} );
 
 objectFitImages();
 
 Nav.init();
 
-const stdSliders = [...document.querySelectorAll('.standard-slider')];
+const stdSliders = [...document.querySelectorAll( '.standard-slider' )];
 
-if (stdSliders) {
-  stdSliders.forEach((s) => {
-    const slider = new Flickity(s, {
+if ( stdSliders ) {
+  stdSliders.forEach( ( s ) => {
+    const slider = new Flickity( s, {
       cellAlign: 'left',
       wrapAround: true,
       imagesLoaded: true,
       watchCSS: true,
       contain: true,
-    });
+    } );
     return slider;
-  });
+  } );
 }

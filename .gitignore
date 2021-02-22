@@ -6,6 +6,7 @@
 ehthumbs.db
 Thumbs.db
 node_modules
+includes/global-colours.php
 
 !src/*
 src/.DS_Store
